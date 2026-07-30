@@ -4,31 +4,23 @@ namespace Kokkoro.Core.Modules;
 
 internal static class ModuleLoader
 {
-    private static readonly List<ModuleAssembly> _assemblies = [];
+    private static readonly Lazy<IReadOnlyList<ModuleAssembly>> _assemblies =
+        new(LoadModuleAssemblys, LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>
     /// 已加载的模块程序集。
     /// 首次访问时从应用程序目录加载模块程序集。
     /// </summary>
     public static IReadOnlyList<ModuleAssembly> ModuleAssemblys
-    {
-        get
-        {
-            if (_assemblies.Count == 0)
-            {
-                LoadModuleAssemblys();
-            }
+        => _assemblies.Value;
 
-            return _assemblies;
-        }
-    }
-
-    private static void LoadModuleAssemblys()
+    private static IReadOnlyList<ModuleAssembly> LoadModuleAssemblys()
     {
+        var assemblies = new List<ModuleAssembly>();
         var modulePath = Path.Combine(AppContext.BaseDirectory);
 
         if (!Directory.Exists(modulePath))
-            return;
+            return Array.Empty<ModuleAssembly>();
 
         foreach (var file in Directory.EnumerateFiles(modulePath, "Kokkoro.*.dll"))
         {
@@ -44,7 +36,7 @@ internal static class ModuleLoader
             if (moduleTypes.Length == 1)
             {
                 var moduleInstance = CreateModuleInstance(moduleTypes[0], file);
-                _assemblies.Add(new ModuleAssembly
+                assemblies.Add(new ModuleAssembly
                 {
                     Assembly = assembly,
                     Instance = moduleInstance,
@@ -54,7 +46,8 @@ internal static class ModuleLoader
         }
 
         // 升序，小 Index 在前
-        _assemblies.Sort((a, b) => a.SetupIndex.CompareTo(b.SetupIndex));
+        assemblies.Sort((a, b) => a.SetupIndex.CompareTo(b.SetupIndex));
+        return assemblies.AsReadOnly();
     }
 
     private static Assembly LoadAssembly(string file)
