@@ -29,7 +29,7 @@ public partial class NotificationDemoViewModel : DocumentPage
     [Reactive]
     public partial string? SelectedStyleDisplay { get; set; } = "无";
 
-    public string[] StyleOptions { get; } = new[] { "无", "亮色" };
+    public string[] StyleOptions { get; } = new[] { "无", "浅色" };
 
     [Reactive]
     public partial NotificationPosition SelectedNotificationPosition { get; set; } = NotificationPosition.TopRight;
@@ -66,7 +66,7 @@ public partial class NotificationDemoViewModel : DocumentPage
     [ReactiveCommand]
     private async Task ShowError()
     {
-        await AppRuntime.NotificationService.ShowWarningAsync(CustomMessage, CreateNotificationOptions());
+        await AppRuntime.NotificationService.ShowErrorAsync(CustomMessage, CreateNotificationOptions());
     }
 
     [ReactiveCommand]
@@ -85,7 +85,7 @@ public partial class NotificationDemoViewModel : DocumentPage
             Expiration = TimeSpan.FromSeconds(Timeout),
             ShowIcon = ShowIcon,
             ShowClose = ShowClose,
-            Classes = SelectedStyleDisplay == "亮色" ? new[] { "Light" } : null,
+            Classes = SelectedStyleDisplay == "浅色" ? new[] { "Light" } : null,
             MaxItems = MaxItems,
             Position = SelectedNotificationPosition
         };

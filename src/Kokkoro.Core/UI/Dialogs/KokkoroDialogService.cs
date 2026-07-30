@@ -9,19 +9,17 @@ public class KokkoroDialogService : IKokkoroDialogService
     public Task<int> ShowKokkoroDialogAsync(
         Control view,
         object? viewModel = null,
-        Window? owner = null,
         Action<IDialogOptions>? configureOptions = null)
     {
         return DialogHelper.ShowDialogAsync(
             view,
             viewModel,
-            owner,
+            null,
             configureOptions);
     }
 
     public Task<int> ShowKokkoroDialogAsync<TViewModel>(
         TViewModel? viewModel = null,
-        Window? owner = null,
         Action<IDialogOptions>? configureOptions = null)
         where TViewModel : class
     {
@@ -38,7 +36,7 @@ public class KokkoroDialogService : IKokkoroDialogService
         return DialogHelper.ShowDialogAsync(
             view,
             vm,
-            owner,
+            null,
             configureOptions);
     }
 }

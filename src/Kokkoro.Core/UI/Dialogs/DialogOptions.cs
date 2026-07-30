@@ -36,7 +36,7 @@ public class DialogOptions : IDialogOptions
     /// <summary>
     /// 屏幕比例（默认窗口大小）
     /// </summary>
-    public double ScreenRatio { get; set; } = 0.3;
+    public double ScreenRatio { get; set; } = 0.4;
 
     /// <summary>
     /// 尺寸模式

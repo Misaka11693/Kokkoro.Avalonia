@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="using:Kokkoro.Sample.ViewModels"
-             x:Class ="Kokkoro.Sample.Views.NotificationDemoView"
+             x:Class="Kokkoro.Sample.Views.NotificationDemoView"
              x:DataType="vm:NotificationDemoViewModel"
              mc:Ignorable="d">
     <Design.DataContext>
@@ -16,17 +16,13 @@
                   VerticalScrollBarVisibility="Auto">
         <StackPanel Spacing="16">
 
-            <Border Padding="18"
-                    BorderBrush="{DynamicResource SemiColorBorder}"
-                    BorderThickness="1">
-                <StackPanel Spacing="4">
-                    <TextBlock FontSize="16"
-                               FontWeight="SemiBold"
-                               Text="窗口通知演示" />
-                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
-                               Text="展示窗口通知的调用方式" />
-                </StackPanel>
-            </Border>
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="窗口通知" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="配置通知内容和显示方式，然后发送不同类型的通知。" />
+            </StackPanel>
 
             <Border Padding="14"
                     Background="{DynamicResource SemiColorFill0}"
@@ -52,7 +48,7 @@
                                Grid.Column="0"
                                VerticalAlignment="Center"
                                Foreground="{DynamicResource SemiColorText2}"
-                               Text="标题（可空）" />
+                                Text="通知标题（可选）" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              PlaceholderText="留空则使用默认标题"
@@ -60,131 +56,128 @@
                 </Grid>
             </Border>
 
-            <Border Padding="14"
-                    Background="{DynamicResource SemiColorFill0}"
-                    BorderBrush="{DynamicResource SemiColorBorder}"
-                    BorderThickness="1">
-                <StackPanel Spacing="16">
-                    <StackPanel Spacing="4">
-                        <TextBlock FontSize="15"
-                                   FontWeight="SemiBold"
-                                   Text="窗口通知演示" />
-                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
-                                   Text="这一页专门配置和测试窗口通知，参数和操作集中在一起更方便观察效果。" />
-                    </StackPanel>
-
-                    <Grid ColumnDefinitions="*,*"
-                          ColumnSpacing="16"
-                          RowDefinitions="Auto">
-                        <Border Grid.Column="0"
-                                Padding="14"
-                                Background="{DynamicResource SemiColorFill0}"
-                                BorderBrush="{DynamicResource SemiColorBorder}"
-                                BorderThickness="1">
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="2">
-                                    <TextBlock FontWeight="SemiBold"
-                                               Text="窗口通知设置" />
-                                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
-                                               Text="适合通知条一类的持续提示。" />
-                                </StackPanel>
-                                <Grid ColumnDefinitions="100,*"
-                                      RowDefinitions="Auto,Auto,Auto,Auto"
-                                      ColumnSpacing="12"
-                                      RowSpacing="10">
-                                    <TextBlock Grid.Row="0"
-                                               Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource SemiColorText2}"
-                                               Text="通知时长" />
-                                    <u:NumericIntUpDown Grid.Row="0"
-                                                        Grid.Column="1"
-                                                        Minimum="1"
-                                                        Maximum="60"
-                                                        Value="{Binding Timeout, Mode=TwoWay}" />
-
-                                    <TextBlock Grid.Row="1"
-                                               Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource SemiColorText2}"
-                                               Text="通知数量" />
-                                    <u:NumericIntUpDown Grid.Row="1"
-                                                        Grid.Column="1"
-                                                        Minimum="1"
-                                                        Maximum="10"
-                                                        Value="{Binding MaxItems, Mode=TwoWay}" />
-
-                                    <TextBlock Grid.Row="2"
-                                               Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource SemiColorText2}"
-                                               Text="通知外观" />
-                                    <StackPanel Grid.Row="2"
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16"
+                  RowDefinitions="Auto">
+                <Border Grid.Column="0"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="通知设置" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="控制通知的显示时长、数量和外观。" />
+                        </StackPanel>
+                        <Grid ColumnDefinitions="110,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                              ColumnSpacing="12"
+                              RowSpacing="10">
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示时长（秒）" />
+                            <u:NumericIntUpDown Grid.Row="0"
                                                 Grid.Column="1"
-                                                Spacing="8">
-                                        <ToggleSwitch IsChecked="{Binding ShowIcon, Mode=TwoWay}"
-                                                      Content="显示图标" />
-                                        <ToggleSwitch IsChecked="{Binding ShowClose, Mode=TwoWay}"
-                                                      Content="显示关闭按钮" />
-                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                                            <TextBlock Text="样式："
-                                                       VerticalAlignment="Center" />
-                                            <ComboBox ItemsSource="{Binding StyleOptions}" SelectedItem="{Binding SelectedStyleDisplay}" />
-                                        </StackPanel>
-                                    </StackPanel>
+                                                Width="120"
+                                                Minimum="1"
+                                                Maximum="60"
+                                                Value="{Binding Timeout, Mode=TwoWay}" />
 
-                                    <TextBlock Grid.Row="3"
-                                               Grid.Column="0"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource SemiColorText2}"
-                                               Text="通知位置" />
-                                    <ComboBox Grid.Row="3"
-                                              Grid.Column="1"
-                                              ItemsSource="{Binding NotificationPositions}"
-                                              SelectedItem="{Binding SelectedNotificationPosition, Mode=TwoWay}" />
-                                </Grid>
-                            </StackPanel>
-                        </Border>
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="最多同时显示" />
+                            <u:NumericIntUpDown Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="120"
+                                                Minimum="1"
+                                                Maximum="10"
+                                                Value="{Binding MaxItems, Mode=TwoWay}" />
 
-                        <Border Grid.Column="1"
-                                Padding="16"
-                                Background="{DynamicResource SemiColorBg0}"
-                                BorderBrush="{DynamicResource SemiColorBorder}"
-                                BorderThickness="1"
-                                CornerRadius="4">
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="4">
-                                    <TextBlock FontSize="15"
-                                               FontWeight="SemiBold"
-                                               Text="通知类型" />
-                                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
-                                               Text="发送不同类型的窗口通知，观察图标、关闭按钮、位置和浅色模式的组合效果。" />
-                                </StackPanel>
-                                <WrapPanel Orientation="Horizontal"
-                                           ItemSpacing="8"
-                                           LineSpacing="8">
-                                    <Button MinWidth="110"
-                                            Command="{Binding ShowInfoCommand}"
-                                            CommandParameter="{x:Null}"
-                                            Content="信息通知" />
-                                    <Button MinWidth="110"
-                                            Classes="Success"
-                                            Command="{Binding ShowSuccessCommand}"
-                                            Content="成功通知" />
-                                    <Button MinWidth="110"
-                                            Classes="Warning"
-                                            Command="{Binding ShowWarningCommand}"
-                                            Content="警告通知" />
-                                    <Button MinWidth="110"
-                                            Classes="Danger"
-                                            Command="{Binding ShowErrorCommand}"
-                                            Content="错误通知" />
-                                </WrapPanel>
-                            </StackPanel>
-                        </Border>
-                    </Grid>
-                </StackPanel>
-            </Border>
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示图标" />
+                            <ToggleSwitch Grid.Row="2"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding ShowIcon, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示关闭按钮" />
+                            <ToggleSwitch Grid.Row="3"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding ShowClose, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="通知样式" />
+                            <ComboBox Grid.Row="4"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding StyleOptions}"
+                                      SelectedItem="{Binding SelectedStyleDisplay, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="通知位置" />
+                            <ComboBox Grid.Row="5"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding NotificationPositions}"
+                                      SelectedItem="{Binding SelectedNotificationPosition, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="通知类型" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="发送不同状态的通知，观察配置效果。" />
+                        </StackPanel>
+                        <WrapPanel Orientation="Horizontal"
+                                   ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button MinWidth="110"
+                                    Command="{Binding ShowInfoCommand}"
+                                    Content="信息通知" />
+                            <Button MinWidth="110"
+                                    Classes="Success"
+                                    Command="{Binding ShowSuccessCommand}"
+                                    Content="成功通知" />
+                            <Button MinWidth="110"
+                                    Classes="Warning"
+                                    Command="{Binding ShowWarningCommand}"
+                                    Content="警告通知" />
+                            <Button MinWidth="110"
+                                    Classes="Danger"
+                                    Command="{Binding ShowErrorCommand}"
+                                    Content="错误通知" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
 
         </StackPanel>
     </ScrollViewer>

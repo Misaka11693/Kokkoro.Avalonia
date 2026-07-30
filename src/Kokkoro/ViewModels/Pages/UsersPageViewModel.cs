@@ -112,7 +112,7 @@ public partial class UsersPageViewModel : DocumentPageViewModel
 
         CurrentPage = 1;
         var uimodel = AppRuntime.Service.Resolve<RolePageViewModel>();
-        var dataIndex = await AppRuntime.DialogService.ShowKokkoroDialogAsync(uimodel, null, a =>
+        var dataIndex = await AppRuntime.DialogService.ShowKokkoroDialogAsync(uimodel, a =>
         {
             a.BeforeButtonCloseAsync = async (w, e) =>
             {

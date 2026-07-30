@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.DialogServiceDemoView"
+             x:DataType="vm:DialogServiceDemoViewModel">
+    <Design.DataContext>
+        <vm:DialogServiceDemoViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer Margin="16"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="标准对话框" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="演示 KokkoroDialogService 的内容视图、按钮配置和关闭结果。" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16">
+                <Border Grid.Column="0"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="编辑模板" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="打开后可编辑模板内容，并通过取消或确认按钮关闭窗口。" />
+                        </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Command="{Binding ShowDialogCommand}"
+                                Content="打开编辑对话框" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="8">
+                        <TextBlock FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Text="关闭结果" />
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="{Binding LastResult}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

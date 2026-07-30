@@ -23,6 +23,7 @@ public class SampleModule : DomainModule
                 Children = new List<MenuItemMeta>
                 {
                     new MenuItemMeta("通知提醒","SemiIconBell",typeof(NotificationDemoViewModel)),
+                    new MenuItemMeta("标准对话框", "SemiIconSetting", typeof(DialogServiceDemoViewModel)),
                     new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel))
                 }
             }

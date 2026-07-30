@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.DialogServiceDemoContentView"
+             x:DataType="vm:DialogServiceDemoContentViewModel">
+    <Design.DataContext>
+        <vm:DialogServiceDemoContentViewModel />
+    </Design.DataContext>
+
+    <StackPanel Spacing="14">
+        <StackPanel Spacing="4">
+            <TextBlock FontSize="16"
+                       FontWeight="SemiBold"
+                       Text="通知模板" />
+            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                       Text="确认后将把当前模板名称返回到演示页面。" />
+        </StackPanel>
+
+        <Grid ColumnDefinitions="88,*"
+              RowDefinitions="Auto,Auto,Auto"
+              ColumnSpacing="12"
+              RowSpacing="12">
+            <TextBlock Grid.Row="0"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource SemiColorText2}"
+                       Text="模板名称" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Text="{Binding Name, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="1"
+                       VerticalAlignment="Top"
+                       Foreground="{DynamicResource SemiColorText2}"
+                       Text="模板说明" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     AcceptsReturn="True"
+                     MinHeight="96"
+                     TextWrapping="Wrap"
+                     Text="{Binding Description, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="2"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource SemiColorText2}"
+                       Text="启用模板" />
+            <ToggleSwitch Grid.Row="2"
+                          Grid.Column="1"
+                          IsChecked="{Binding IsEnabled, Mode=TwoWay}" />
+        </Grid>
+    </StackPanel>
+</UserControl>
