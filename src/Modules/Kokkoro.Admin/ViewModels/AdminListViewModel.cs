@@ -85,7 +85,6 @@ public partial class AdminListViewModel : DocumentPage
         IsLoading = true;
         try
         {
-            // 本地演示数据也保留一个短暂异步过程，以便观察加载状态。
             await Task.Delay(200);
 
             var filteredItems = AllItems.Where(item =>
