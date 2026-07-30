@@ -45,8 +45,17 @@ internal static class ModuleLoader
             }
         }
 
-        // 升序，小 Index 在前
-        assemblies.Sort((a, b) => a.SetupIndex.CompareTo(b.SetupIndex));
+        // 先按启动级别排序；同级模块按程序集名排序，保证顺序稳定。
+        assemblies.Sort((left, right) =>
+        {
+            var bySetupLevel = left.SetupIndex.CompareTo(right.SetupIndex);
+
+            return bySetupLevel != 0
+                ? bySetupLevel
+                : StringComparer.Ordinal.Compare(
+                    left.Assembly.GetName().Name,
+                    right.Assembly.GetName().Name);
+        });
         return assemblies.AsReadOnly();
     }
 
