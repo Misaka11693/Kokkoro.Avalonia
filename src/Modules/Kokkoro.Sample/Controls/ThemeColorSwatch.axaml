@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Kokkoro.Sample.Controls.ThemeColorSwatch"
+             MinWidth="240"
+             Height="44">
+	<Border CornerRadius="6"
+	        BorderBrush="{DynamicResource SemiColorBorder}"
+	        BorderThickness="1"
+	        ClipToBounds="True">
+		<Grid ColumnDefinitions="44,*">
+			<Border x:Name="Swatch"
+			        Grid.Column="0"
+			        Background="Transparent" />
+			<SelectableTextBlock x:Name="KeyText"
+			                     Grid.Column="1"
+			                     Margin="8,0,8,0"
+			                     VerticalAlignment="Center"
+			                     FontSize="12"
+			                     Foreground="{DynamicResource SemiColorText0}" />
+		</Grid>
+	</Border>
+</UserControl>
