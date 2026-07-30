@@ -38,30 +38,37 @@
                     BorderBrush="{DynamicResource SemiColorBorder}"
                     BorderThickness="1"
                     CornerRadius="4">
-                <Grid ColumnDefinitions="Auto,220,Auto,140,*,Auto,Auto"
-                      ColumnSpacing="12">
-                    <TextBlock VerticalAlignment="Center"
-                               Foreground="{DynamicResource SemiColorText2}"
-                               Text="关键词" />
-                    <TextBox Grid.Column="1"
-                             PlaceholderText="姓名或编号"
-                             Text="{Binding Keyword, Mode=TwoWay}" />
+                <Expander IsExpanded="{Binding IsQueryPanelExpanded, Mode=TwoWay}">
+                    <Expander.Header>
+                        <TextBlock FontWeight="SemiBold"
+                                   Text="查询条件" />
+                    </Expander.Header>
+                    <Grid Margin="0,12,0,0"
+                          ColumnDefinitions="Auto,220,Auto,140,*,Auto,Auto"
+                          ColumnSpacing="12">
+                        <TextBlock VerticalAlignment="Center"
+                                   Foreground="{DynamicResource SemiColorText2}"
+                                   Text="关键词" />
+                        <TextBox Grid.Column="1"
+                                 PlaceholderText="姓名或编号"
+                                 Text="{Binding Keyword, Mode=TwoWay}" />
 
-                    <TextBlock Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{DynamicResource SemiColorText2}"
-                               Text="状态" />
-                    <ComboBox Grid.Column="3"
-                              ItemsSource="{Binding StatusOptions}"
-                              SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="2"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource SemiColorText2}"
+                                   Text="状态" />
+                        <ComboBox Grid.Column="3"
+                                  ItemsSource="{Binding StatusOptions}"
+                                  SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" />
 
-                    <Button Grid.Column="5"
-                            Command="{Binding QueryCommand}"
-                            Content="查询" />
-                    <Button Grid.Column="6"
-                            Command="{Binding ResetCommand}"
-                            Content="重置" />
-                </Grid>
+                        <Button Grid.Column="5"
+                                Command="{Binding QueryCommand}"
+                                Content="查询" />
+                        <Button Grid.Column="6"
+                                Command="{Binding ResetCommand}"
+                                Content="重置" />
+                    </Grid>
+                </Expander>
             </Border>
 
             <Border Grid.Row="2"

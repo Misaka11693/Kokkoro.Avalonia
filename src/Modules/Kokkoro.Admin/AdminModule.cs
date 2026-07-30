@@ -16,12 +16,12 @@ public class AdminModule : DomainModule
     private static void OnModuleOperations(object? sender, EventArgs e)
     {
         MenuManager.AddModules(
-            new MenuItemMeta("管理界面", "SemiIconGrid")
+            new MenuItemMeta("管理界面", "SemiIconInheritStroked")
             {
                 Children =
                 [
-                    new MenuItemMeta("数据列表", "SemiIconList", typeof(AdminListViewModel)),
-                    new MenuItemMeta("树形结构", "SemiIconTree", typeof(AdminTreeViewModel))
+                    new MenuItemMeta("数据列表", "SemiIconGridStroked", typeof(AdminListViewModel)),
+                    new MenuItemMeta("树形结构", "SemiIconBookStroked", typeof(AdminTreeViewModel))
                 ]
             });
     }

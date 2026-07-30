@@ -84,6 +84,9 @@ public partial class AdminTreeViewModel : DocumentPage
     [Reactive]
     public partial int VisibleNodeCount { get; set; }
 
+    [Reactive]
+    public partial bool IsQueryPanelExpanded { get; set; } = true;
+
     public ObservableCollection<AdminTreeNode> TreeNodes { get; } = [];
 
     public AdminTreeViewModel()

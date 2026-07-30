@@ -44,6 +44,9 @@ public partial class AdminListViewModel : DocumentPage
     [Reactive]
     public partial int SelectedCount { get; set; }
 
+    [Reactive]
+    public partial bool IsQueryPanelExpanded { get; set; } = true;
+
     public IReadOnlyList<string> StatusOptions { get; } = ["全部", "启用", "停用"];
 
     public ObservableCollection<AdminListItem> Items { get; } = [];
