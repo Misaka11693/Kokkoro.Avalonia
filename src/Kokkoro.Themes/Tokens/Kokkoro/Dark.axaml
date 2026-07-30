@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Kokkoro preset (Dark) — only define colors here -->
+
+    <!-- Accent / brand -->
+    <Color x:Key="SemiColorPrimary">#7FAF98</Color>
+    <Color x:Key="SemiColorPrimaryHover">#89B7A1</Color>
+    <Color x:Key="SemiColorPrimaryActive">#73A38D</Color>
+
+    <!-- Text -->
+    <Color x:Key="SemiColorText0">#E7EFEA</Color>
+    <Color x:Key="SemiColorText1">#C7D3CC</Color>
+    <Color x:Key="SemiColorText2">#A6B4AD</Color>
+    <Color x:Key="SemiColorText3">#7F8F87</Color>
+
+    <!-- Surfaces -->
+    <Color x:Key="SemiColorBg0">#121917</Color>
+    <Color x:Key="SemiColorBg1">#16201D</Color>
+    <Color x:Key="SemiColorBg2">#1B2622</Color>
+
+    <Color x:Key="SemiColorFill0">#1B2622</Color>
+    <Color x:Key="SemiColorFill1">#22312C</Color>
+    <Color x:Key="SemiColorFill2">#2A3B35</Color>
+
+    <!-- Border / divider -->
+    <Color x:Key="SemiColorBorder">#31463F</Color>
+
+    <Color x:Key="SemiColorFocusBorder">#7FAF98</Color>
+</ResourceDictionary>
+

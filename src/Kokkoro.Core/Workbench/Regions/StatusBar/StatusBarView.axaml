@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Kokkoro.Core.Workbench.Regions.StatusBar"
+             mc:Ignorable="d" d:DesignWidth="280" d:DesignHeight="260"
+             x:Class="Kokkoro.Core.Workbench.Regions.StatusBar.StatusBarView"
+             x:DataType="vm:StatusBarViewModel">
+    <Border Padding="16,8"
+            Background="{DynamicResource SemiColorBg0}"
+            BorderBrush="{DynamicResource SemiColorBorder}"
+            BorderThickness="0,1,0,0">
+        <!--         <TextBlock HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        FontSize="{DynamicResource SemiFontSizeSmall}"
+        Foreground="{DynamicResource SemiColorText2}"
+        Text="{Binding ThemeText}" /> -->
+
+        <TextBlock HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="{DynamicResource SemiFontSizeSmall}"
+                   Foreground="{DynamicResource SemiColorText2}"
+                   Text="状态栏文本" />
+    </Border>
+</UserControl>

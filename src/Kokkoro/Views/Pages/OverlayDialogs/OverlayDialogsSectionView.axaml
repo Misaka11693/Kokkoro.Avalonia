@@ -1,0 +1,193 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.OverlayDialogs.OverlayDialogsSectionView"
+             x:DataType="vm:OverlayDialogsSectionViewModel">
+    <Border Padding="16">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="15"
+                           FontWeight="SemiBold"
+                           Text="服务能力演示" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="左侧配置 OverlayDialog 的常用选项，右侧分别演示标准弹窗和自定义弹窗的打开效果。" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="360,*"
+                  ColumnSpacing="16"
+                  RowDefinitions="Auto">
+                <Border Grid.Column="0"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <TextBlock FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Text="弹窗参数" />
+
+                        <Grid ColumnDefinitions="120,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                              ColumnSpacing="12"
+                              RowSpacing="10">
+                            <TextBlock Grid.Row="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="标准图标" />
+                            <ComboBox Grid.Row="0"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding DialogModes}"
+                                      SelectedItem="{Binding SelectedDialogMode, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="标准按钮" />
+                            <ComboBox Grid.Row="1"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding DialogButtons}"
+                                      SelectedItem="{Binding SelectedDialogButton, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="2"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="水平定位" />
+                            <ComboBox Grid.Row="2"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding HorizontalAnchors}"
+                                      SelectedItem="{Binding SelectedHorizontalAnchor, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="3"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="垂直定位" />
+                            <ComboBox Grid.Row="3"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding VerticalAnchors}"
+                                      SelectedItem="{Binding SelectedVerticalAnchor, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="4"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="水平偏移" />
+                            <TextBox Grid.Row="4"
+                                     Grid.Column="1"
+                                     Text="{Binding HorizontalOffset, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="5"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="垂直偏移" />
+                            <TextBox Grid.Row="5"
+                                     Grid.Column="1"
+                                     Text="{Binding VerticalOffset, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="6"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="允许轻关" />
+                            <ToggleSwitch Grid.Row="6"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding CanLightDismiss, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="7"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="允许拖动" />
+                            <ToggleSwitch Grid.Row="7"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding CanDragMove, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="8"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="允许缩放" />
+                            <StackPanel Grid.Row="8"
+                                        Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        Spacing="12">
+                                <ToggleSwitch IsChecked="{Binding CanResize, Mode=TwoWay}" />
+                                <ToggleSwitch IsChecked="{Binding IsCloseButtonVisible, Mode=TwoWay}" />
+                                <TextBlock VerticalAlignment="Center"
+                                           Foreground="{DynamicResource SemiColorText2}"
+                                           Text="显示关闭按钮" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Border Height="1"
+                                Background="{DynamicResource SemiColorBorder}" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="12">
+                            <ToggleSwitch IsChecked="{Binding FullScreen, Mode=TwoWay}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="以全屏覆盖方式显示" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Column="1"
+                            Spacing="16">
+                    <Border Padding="16"
+                            Background="{DynamicResource SemiColorBg0}"
+                            BorderBrush="{DynamicResource SemiColorBorder}"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock FontSize="15"
+                                           FontWeight="SemiBold"
+                                           Text="标准 OverlayDialog" />
+                                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                           Text="使用 Ursa 自带标题栏、图标和按钮区，适合确认、提示和标准交互。" />
+                            </StackPanel>
+
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="150"
+                                        Classes="Primary"
+                                        Command="{Binding OpenStandardModalCommand}"
+                                        Content="模态打开" />
+                                <Button MinWidth="150"
+                                        Command="{Binding OpenStandardNonModalCommand}"
+                                        Content="非模态打开" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Padding="16"
+                            Background="{DynamicResource SemiColorBg0}"
+                            BorderBrush="{DynamicResource SemiColorBorder}"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock FontSize="15"
+                                           FontWeight="SemiBold"
+                                           Text="自定义 OverlayDialog" />
+                                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                           Text="内容区完全由自定义 View 承载，更适合表单录入、复杂交互和返回自定义结果。" />
+                            </StackPanel>
+
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="150"
+                                        Classes="Success"
+                                        Command="{Binding OpenCustomModalCommand}"
+                                        Content="模态打开" />
+                                <Button MinWidth="150"
+                                        Classes="Warning"
+                                        Command="{Binding OpenCustomNonModalCommand}"
+                                        Content="非模态打开" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,8 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Control styles: inherit Semi Light, and rely on Tokens/ overrides for colors -->
+        <ResourceInclude Source="avares://Semi.Avalonia/Themes/Light/_index.axaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+

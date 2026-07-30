@@ -1,0 +1,140 @@
+<u:SplashWindow
+    x:Class="Kokkoro.Views.Startup.StartupSplashWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:u="https://irihi.tech/ursa"
+    xmlns:vm="using:Kokkoro.ViewModels.Startup"
+    x:DataType="vm:StartupSplashWindowViewModel"
+    Width="720"
+    Height="460"
+    Title="Kokkoro"
+    Icon="/Assets/avalonia-logo.ico"
+    CanResize="False"
+    WindowStartupLocation="CenterScreen"
+    CountDown="{x:Null}"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:StartupSplashWindowViewModel />
+    </Design.DataContext>
+
+    <Grid>
+
+        <!-- 背景图片 -->
+        <Image
+            Source="/Assets/splash-background3.png"
+            Stretch="UniformToFill" />
+
+        <!-- 白色半透明遮罩 -->
+        <Border Background="#55FFFFFF" />
+
+        <Border
+            Margin="18"
+            Padding="28"
+            BorderBrush="#30FFFFFF"
+            BorderThickness="1"
+            CornerRadius="16">
+
+            <Grid
+                RowDefinitions="*,Auto,Auto"
+                RowSpacing="22">
+
+                <!-- logo -->
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Spacing="14">
+
+                    <Border
+                        Width="150"
+                        Height="150"
+                        Background="#15A5E27A"
+                        BorderThickness="1.2"
+                        CornerRadius="75">
+
+                        <Svg
+                            Width="108"
+                            Height="108"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Stretch="Uniform"
+                            Path="/Assets/avalonia-logo.svg" />
+                    </Border>
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="32"
+                        FontWeight="SemiBold"
+                        Foreground="#1D1D1F"
+                        Text="Kokkoro" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="14"
+                        Foreground="#70757A"
+                        Text="Modern Desktop Framework" />
+
+                </StackPanel>
+
+                <!-- Progress -->
+                <StackPanel
+                    Grid.Row="1"
+                    Spacing="10">
+
+                    <TextBlock
+                        FontSize="14"
+                        Foreground="#5F6368"
+                        Text="{Binding StatusText}" />
+
+                    <Grid
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="12">
+
+                        <ProgressBar
+                            Height="8"
+                            Minimum="0"
+                            Maximum="100"
+                            Value="{Binding Progress}" />
+
+                        <TextBlock
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            FontWeight="SemiBold"
+                            FontSize="14"
+                            Foreground="#202124"
+                            Text="{Binding Progress,StringFormat={}{0:0}%}" />
+
+                    </Grid>
+
+                </StackPanel>
+
+                <!-- Footer -->
+                <Grid
+                    Grid.Row="2"
+                    ColumnDefinitions="Auto,*">
+
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="#9AA0A6"
+                        Text="Version 1.0.0" />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="#9AA0A6"
+                        TextAlignment="Right"
+                        Text="© Kokkoro Framework" />
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</u:SplashWindow>

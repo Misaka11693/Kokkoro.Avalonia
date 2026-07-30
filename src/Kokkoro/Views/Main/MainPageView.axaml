@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dock="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
+             xmlns:docking="using:Kokkoro.Core.Workbench.Docking"
+             xmlns:local="using:Kokkoro.Converters"
+             xmlns:vm="using:Kokkoro.ViewModels.Main"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Views.Main.MainPageView"
+             x:DataType="vm:MainPageViewModel"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <local:IsActiveToBrushConverter x:Key="IsActiveToBrushConverter" />
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <!-- 外层 CardBorder 负责描边；去掉 Dock 文档区重复边框 -->
+        <Style Selector="dock|DockControl.card-hosted dock|DocumentControl /template/ Border#PART_Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+        <!-- EmptyContent 铺满整个文档区域 -->
+        <Style Selector="dock|DockControl.card-hosted dock|DocumentControl /template/ ContentControl#PART_EmptyContentHost">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <!--文档区标题栏图标 + 文本-->
+        <Style Selector="DocumentControl">
+            <Setter Property="IconTemplate">
+                <DataTemplate DataType="docking:DocumentPage">
+                    <!-- <PathIcon
+                    Width="18"
+                    Height="18"
+                    Margin="5,0,0,0"
+                    Data="{Binding Icon}"
+                    Foreground="{Binding IconForeground}" />-->
+                    <PathIcon
+                        Width="18"
+                        Height="18"
+                        Margin="5,0,0,0"
+                        Data="{Binding Icon}"
+                        Foreground="{Binding IsActive, Converter={StaticResource IsActiveToBrushConverter}}" />
+                </DataTemplate>
+            </Setter>
+
+            <Setter Property="HeaderTemplate">
+                <DataTemplate DataType="docking:DocumentPage">
+                    <TextBlock
+                        Text="{Binding Title}"
+                        Margin="2,0,4,0"
+                        VerticalAlignment="Center" />
+                </DataTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="DocumentTabStripItem">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+
+    </UserControl.Styles>
+    <Border Padding="0"
+            VerticalAlignment="Stretch"
+            Theme="{DynamicResource CardBorder}">
+        <dock:DockControl Margin="1"
+                          Classes="card-hosted"
+                          Layout="{Binding Layout}" />
+    </Border>
+</UserControl>

@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             xmlns:messages="using:Kokkoro.Views.Pages.Messages"
+             x:Class="Kokkoro.Views.Pages.MessagesNotificationsPageView"
+             x:DataType="vm:MessagesNotificationsPageViewModel"
+             MinHeight="0"
+             MinWidth="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="Transparent"
+             Focusable="True">
+
+    <ScrollViewer Margin="16"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="1040"
+                    Spacing="16"
+                    HorizontalAlignment="Stretch">
+
+            <Border Padding="18"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <StackPanel Spacing="16">
+                    <StackPanel Spacing="4">
+                        <TextBlock FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Text="窗口通知演示" />
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="将窗口通知单独拆成一个页面，便于专注调试位置、数量和样式参数。" />
+                    </StackPanel>
+
+                    <messages:MessagesEditorSectionView DataContext="{Binding Editor}" />
+                </StackPanel>
+            </Border>
+
+            <messages:MessagesNotificationsSectionView DataContext="{Binding Notifications}" />
+
+            <messages:MessagesResultSectionView DataContext="{Binding Result}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

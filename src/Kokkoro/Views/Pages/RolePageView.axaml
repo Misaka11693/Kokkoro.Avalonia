@@ -1,0 +1,168 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Kokkoro.Controls"
+             xmlns:models="using:Kokkoro.Models"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.RolePageView"
+             x:Name="RolePageRoot"
+             x:DataType="vm:RolePageViewModel"
+             MinHeight="0"
+             MinWidth="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="Transparent"
+             Focusable="True">
+    <u:LoadingContainer MinWidth="0"
+                        MinHeight="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Background="Transparent"
+                        IsLoading="{Binding IsLoading}"
+                        LoadingMessage="加载中...">
+        <Grid Margin="5"
+              MinWidth="0"
+              MinHeight="0"
+              RowDefinitions="Auto,*"
+              RowSpacing="5">
+            <Border Padding="12"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Expander IsExpanded="{Binding IsQueryPanelExpanded, Mode=TwoWay}">
+                    <Expander.Header>
+                        <TextBlock FontWeight="SemiBold"
+                                   Text="查询条件" />
+                    </Expander.Header>
+
+                    <Grid Margin="0,12,0,0"
+                          ColumnDefinitions="Auto,180,Auto,180,Auto,140,*"
+                          RowDefinitions="Auto,Auto"
+                          ColumnSpacing="12"
+                          RowSpacing="12">
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="编码" />
+                        <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 PlaceholderText="请输入角色编码"
+                                 Text="{Binding QueryCriteria.Code, Mode=TwoWay}" />
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="2"
+                                   VerticalAlignment="Center"
+                                   Text="名称" />
+                        <TextBox Grid.Row="0"
+                                 Grid.Column="3"
+                                 PlaceholderText="请输入角色名称"
+                                 Text="{Binding QueryCriteria.Name, Mode=TwoWay}" />
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="4"
+                                   VerticalAlignment="Center"
+                                   Text="状态" />
+                        <ComboBox Grid.Row="0"
+                                  Grid.Column="5"
+                                  ItemsSource="{Binding StatusOptions}"
+                                  SelectedIndex="0"
+                                  SelectedItem="{Binding QueryCriteria.Status, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="7"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                            <Button MinWidth="88"
+                                    Command="{Binding QueryCommand}"
+                                    Content="查询" />
+                            <Button MinWidth="88"
+                                    Command="{Binding ResetCommand}"
+                                    Content="重置" />
+                        </StackPanel>
+                    </Grid>
+                </Expander>
+            </Border>
+
+            <Border Grid.Row="1"
+                    MinHeight="0"
+                    MinWidth="0"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <controls:PageView CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
+                                   PageSize="{Binding PageSize, Mode=TwoWay}"
+                                   TotalCount="{Binding TotalCount}"
+                                   SelectedCount="{Binding SelectedCount}"
+                                   ShowSelectedCount="True"
+                                   IsPagingEnabled="{Binding !IsLoading}"
+                                   LoadPageCommand="{Binding LoadPageCommand}">
+                    <DataGrid x:Name="RolesGrid"
+                              MinHeight="0"
+                              MinWidth="0"
+                              AutoGenerateColumns="False"
+                              BorderThickness="0"
+                              CanUserReorderColumns="True"
+                              CanUserResizeColumns="True"
+                              CanUserSortColumns="True"
+                              GridLinesVisibility="Horizontal"
+                              HeadersVisibility="Column"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding Roles}"
+                              SelectionChanged="OnRolesGridSelectionChanged"
+                              SelectionMode="Extended">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="110"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding Code}"
+                                                SortMemberPath="Code"
+                                                Header="角色编码" />
+                            <DataGridTextColumn Width="150"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding Name}"
+                                                SortMemberPath="Name"
+                                                Header="角色名称" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding Category}"
+                                                SortMemberPath="Category"
+                                                Header="分类" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding MemberCount}"
+                                                SortMemberPath="MemberCount"
+                                                Header="成员数" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding Status}"
+                                                SortMemberPath="Status"
+                                                Header="状态" />
+                            <DataGridTextColumn Width="160"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding UpdatedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"
+                                                SortMemberPath="UpdatedAt"
+                                                Header="更新时间" />
+                            <DataGridTextColumn Width="*"
+                                                MinWidth="220"
+                                                x:DataType="models:Role"
+                                                Binding="{Binding Description}"
+                                                SortMemberPath="Description"
+                                                Header="说明" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </controls:PageView>
+            </Border>
+        </Grid>
+    </u:LoadingContainer>
+</UserControl>

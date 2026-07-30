@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.SettingsPageView"
+             x:DataType="vm:SettingsPageViewModel"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="Transparent"
+             Focusable="True">
+    <Grid Margin="20"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          Background="Transparent"
+          RowDefinitions="Auto,Auto,Auto"
+          RowSpacing="12">
+        <TextBlock FontSize="{DynamicResource SemiFontSizeHeader3}"
+                   FontWeight="SemiBold"
+                   Text="设置" />
+
+        <StackPanel Grid.Row="1" Spacing="6">
+            <TextBlock Text="环境" />
+            <TextBox Text="{Binding EnvironmentName, Mode=TwoWay}" />
+        </StackPanel>
+
+        <CheckBox Grid.Row="2"
+                  Content="启用通知"
+                  IsChecked="{Binding EnableNotifications, Mode=TwoWay}" />
+    </Grid>
+</UserControl>

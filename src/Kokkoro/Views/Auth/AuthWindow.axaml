@@ -1,0 +1,293 @@
+<u:UrsaWindow x:Class="Kokkoro.Views.Auth.AuthWindow"
+              xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:vm="using:Kokkoro.ViewModels.Auth"
+              x:DataType="vm:AuthWindowViewModel"
+              Width="980"
+              Height="620"
+              MinWidth="900"
+              MinHeight="560"
+              Icon="/Assets/avalonia-logo.ico"
+              Title="Kokkoro"
+              WindowStartupLocation="CenterScreen"
+              ExtendClientAreaToDecorationsHint="True"
+              IsFullScreenButtonVisible="{x:False}"
+              Background="#08111E"
+              mc:Ignorable="d">
+    <u:UrsaWindow.Styles>
+        <Style Selector="TextBox.input-field">
+            <Setter Property="MinHeight" Value="44" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Background" Value="#225F7CA4" />
+            <Setter Property="BorderBrush" Value="#52B3D4F2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="CaretBrush" Value="White" />
+            <Setter Property="PlaceholderForeground" Value="#C9E3F6FF" />
+        </Style>
+        <Style Selector="Button.text-button">
+            <Setter Property="Theme" Value="{StaticResource BorderlessButton}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="#F2F7FF" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="TextBox.password-field">
+            <Setter Property="PasswordChar" Value="&#x2022;" />
+        </Style>
+        <Style Selector="Button.text-button:pointerover">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="Button.primary-button">
+            <Setter Property="MinHeight" Value="46" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBlock.form-title">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="Border.panel-frame">
+            <Setter Property="CornerRadius" Value="26" />
+        </Style>
+        <Style Selector="Border.error-banner">
+            <Setter Property="Margin" Value="0,18,0,0" />
+            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="Background" Value="#24561A26" />
+            <Setter Property="BorderBrush" Value="#58FFCACA" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.error-text">
+            <Setter Property="Foreground" Value="#FFF1F1" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style Selector="Grid.background-layer">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.62" Easing="CircularEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Image.blur-layer">
+            <Setter Property="Stretch" Value="UniformToFill" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.54" Easing="CircularEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Grid.form-panel">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Width" Duration="0:0:0.44" Easing="CircularEaseOut" />
+                    <DoubleTransition Property="Height" Duration="0:0:0.44" Easing="CircularEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+    </u:UrsaWindow.Styles>
+
+    <Grid x:Name="AuthWindowRoot">
+        <Grid x:Name="SignInBackgroundLayer"
+              Classes="background-layer"
+              Opacity="{Binding SignInBackdropOpacity}">
+            <Image x:Name="SignInBackgroundImage"
+                   Stretch="UniformToFill" />
+        </Grid>
+
+        <Grid x:Name="SignUpBackgroundLayer"
+              Classes="background-layer"
+              Opacity="{Binding SignUpBackdropOpacity}">
+            <Image x:Name="SignUpBackgroundImage"
+                   Stretch="UniformToFill" />
+        </Grid>
+
+        <Grid x:Name="AuthPanel" 
+			  Classes="form-panel"
+              Width="{Binding PanelWidth}"
+              Height="{Binding PanelHeight}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Opacity="0.98">
+            <Border x:Name="PanelShadowLayer"
+                    Classes="panel-frame"
+                    Background="#01000000"
+                    BoxShadow="0 18 42 0 #66041928" />
+            <Border x:Name="FrostedBackdropLayer"
+                    Classes="panel-frame"
+                    ClipToBounds="True">
+                <Grid x:Name="FrostLayerStack">
+                    <Image Classes="blur-layer"
+                           x:Name="SignInFrostImage"
+                           Opacity="{Binding SignInBackdropOpacity}">
+                        <Image.Effect>
+                            <BlurEffect Radius="22" />
+                        </Image.Effect>
+                    </Image>
+
+                    <Image Classes="blur-layer"
+                           x:Name="SignUpFrostImage"
+                           Opacity="{Binding SignUpBackdropOpacity}">
+                        <Image.Effect>
+                            <BlurEffect Radius="22" />
+                        </Image.Effect>
+                    </Image>
+
+                    <Border x:Name="FrostLightOverlay"
+                            Background="#14FFFFFF" />
+                    <Border x:Name="FrostTintOverlay"
+                            Background="#12355178" />
+                    <Border x:Name="FrostGradientOverlay">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#2CFFFFFF" Offset="0" />
+                                <GradientStop Color="#14FFFFFF" Offset="0.36" />
+                                <GradientStop Color="#10C7D8F5" Offset="0.72" />
+                                <GradientStop Color="#0698B7E0" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Border>
+            <Border x:Name="PanelOutline"
+                    Classes="panel-frame"
+                    Background="#08283A4E"
+                    BorderBrush="#54D6E6FF"
+                    BorderThickness="1" />
+
+            <Grid x:Name="PanelContentLayout"
+                  Margin="42,34,42,28"
+                  RowDefinitions="*,Auto">
+                <Grid x:Name="FormViewport"
+                      ClipToBounds="True">
+                    <StackPanel x:Name="FormTrack"
+                                Width="{Binding FormTrackWidth}"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                Spacing="{Binding FormSpacing}">
+                        <StackPanel.RenderTransform>
+                            <TranslateTransform X="{Binding FormSlideOffsetX}">
+                                <TranslateTransform.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition Property="X" Duration="0:0:0.46" Easing="CircularEaseOut" />
+                                    </Transitions>
+                                </TranslateTransform.Transitions>
+                            </TranslateTransform>
+                        </StackPanel.RenderTransform>
+
+                        <StackPanel x:Name="SignInFormPanel"
+                                    Width="{Binding FormWidth}"
+                                    Spacing="12"
+                                    VerticalAlignment="Center">
+                            <TextBlock x:Name="SignInTitleText"
+                                       Classes="form-title"
+                                       Margin="0,2,0,6"
+                                       Width="{Binding FormWidth}"
+                                       LetterSpacing="12"
+                                       Text="SIGN IN" />
+
+                            <TextBox x:Name="SignInUserNameTextBox"
+                                     Classes="input-field"
+                                     PlaceholderText="Username"
+                                     Text="{Binding Account, Mode=TwoWay}" />
+
+                            <TextBox x:Name="SignInPasswordTextBox"
+                                     Classes="input-field password-field"
+                                       PlaceholderText="Password"
+                                       Text="{Binding Password, Mode=TwoWay}" />
+
+                            <Grid x:Name="SignInActionRow"
+                                  Margin="0,4,0,0"
+                                  ColumnDefinitions="*,Auto">
+                                <Button x:Name="ForgotPasswordButton"
+                                        HorizontalAlignment="Left"
+                                        Classes="text-button"
+                                        Content="Forgot Password" />
+                                <Button x:Name="ShowSignUpButton"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Classes="text-button"
+                                        Content="Sign up"
+                                        Command="{Binding ToggleModeCommand}" />
+                            </Grid>
+
+                            <Button x:Name="SignInSubmitButton"
+                                    Margin="0,12,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Theme="{StaticResource SolidButton}"
+                                    Classes="primary-button"
+                                    Command="{Binding SubmitCommand}"
+                                    Content="Sign in" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="SignUpFormPanel"
+                                    Width="{Binding FormWidth}"
+                                    Spacing="12"
+                                    VerticalAlignment="Center">
+                            <TextBlock x:Name="SignUpTitleText"
+                                       Classes="form-title"
+                                       Margin="0,2,0,6"
+                                       Width="{Binding FormWidth}"
+                                       LetterSpacing="10"
+                                       Text="SIGN UP" />
+
+                            <TextBox x:Name="SignUpUserNameTextBox"
+                                     Classes="input-field"
+                                      PlaceholderText="Username"
+                                      Text="{Binding SignUpUserName, Mode=TwoWay}" />
+
+                            <TextBox x:Name="SignUpEmailTextBox"
+                                     Classes="input-field"
+                                      PlaceholderText="Email Address"
+                                      Text="{Binding SignUpEmail, Mode=TwoWay}" />
+
+                            <TextBox x:Name="SignUpPasswordTextBox"
+                                     Classes="input-field password-field"
+                                      PlaceholderText="Create Password"
+                                      Text="{Binding SignUpPassword, Mode=TwoWay}" />
+
+                            <TextBox x:Name="ConfirmPasswordTextBox"
+                                     Classes="input-field password-field"
+                                      PlaceholderText="Confirm Password"
+                                      Text="{Binding ConfirmPassword, Mode=TwoWay}" />
+
+                            <Button x:Name="SignUpSubmitButton"
+                                    Margin="0,12,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    Theme="{StaticResource SolidButton}"
+                                    Classes="primary-button"
+                                    Command="{Binding SubmitCommand}"
+                                    Content="Sign up" />
+
+                            <Button x:Name="ShowSignInButton"
+                                    Margin="0,8,0,0"
+                                    HorizontalAlignment="Center"
+                                    Classes="text-button"
+                                    Content="Sign in"
+                                    Command="{Binding ToggleModeCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Border x:Name="ErrorBanner"
+                        Grid.Row="1"
+                        Classes="error-banner"
+                        IsVisible="{Binding HasError}">
+                    <TextBlock x:Name="ErrorMessageText"
+                               Classes="error-text"
+                               Text="{Binding ErrorMessage}" />
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</u:UrsaWindow>

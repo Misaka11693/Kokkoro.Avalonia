@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Semi.Avalonia.Dock</id>
+    <version>12.0.0.2</version>
+    <title>Semi.Avalonia.Dock</title>
+    <authors>IRIHI Technology Co., Ltd.</authors>
+    <license type="file">LICENSE</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>irihi.png</icon>
+    <readme>README.md</readme>
+    <description>Dock.Avalonia Theme inspired by Semi Design.</description>
+    <releaseNotes>Update to Semi.Avalonia.Dock 12.0.0.2</releaseNotes>
+    <repository type="git" commit="9d7654400b57083806d174b7d06cf3383fea42e0" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Dock.Avalonia" version="12.0.0.2" exclude="Build,Analyzers" />
+        <dependency id="Irihi.Avalonia.Shared" version="0.4.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net10.0">
+        <dependency id="Dock.Avalonia" version="12.0.0.2" exclude="Build,Analyzers" />
+        <dependency id="Irihi.Avalonia.Shared" version="0.4.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

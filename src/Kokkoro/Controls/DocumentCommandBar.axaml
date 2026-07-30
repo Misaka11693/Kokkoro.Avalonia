@@ -1,0 +1,39 @@
+<ItemsControl xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:local="using:Kokkoro.Controls"
+              x:Class="Kokkoro.Controls.DocumentCommandBar">
+    <ItemsControl.Styles>
+        <Style Selector="local|DocumentCommandBar">
+            <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="local|DocumentCommandBarSeparator">
+            <Setter Property="Background" Value="{DynamicResource SemiColorBorder}" />
+        </Style>
+    </ItemsControl.Styles>
+    <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Spacing>
+                    <Binding Path="ItemSpacing"
+                             RelativeSource="{RelativeSource AncestorType=local:DocumentCommandBar}" />
+                </StackPanel.Spacing>
+            </StackPanel>
+        </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+    <ItemsControl.Template>
+        <ControlTemplate TargetType="local:DocumentCommandBar">
+            <Border Padding="{TemplateBinding BarPadding}"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="0,0,0,1"
+                    ClipToBounds="True">
+                <ScrollViewer MinWidth="0"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Disabled">
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </ScrollViewer>
+            </Border>
+        </ControlTemplate>
+    </ItemsControl.Template>
+</ItemsControl>

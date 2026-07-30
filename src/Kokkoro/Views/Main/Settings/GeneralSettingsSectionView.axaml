@@ -1,0 +1,16 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Main.Settings"
+             x:Class="Kokkoro.Views.Main.Settings.GeneralSettingsSectionView"
+             x:DataType="vm:GeneralSettingsSectionViewModel">
+    <StackPanel Spacing="20">
+        <Border Padding="16"
+                CornerRadius="8"
+                Background="{DynamicResource SemiColorFill0}"
+                BorderBrush="{DynamicResource SemiColorBorder}"
+                BorderThickness="1">
+            <TextBlock TextWrapping="Wrap"
+                       Text="{Binding Summary}" />
+        </Border>
+    </StackPanel>
+</UserControl>

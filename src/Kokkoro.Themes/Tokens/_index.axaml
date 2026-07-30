@@ -1,0 +1,23 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:themes="clr-namespace:Kokkoro.Themes;assembly=Kokkoro.Themes">
+    <!--
+      Registers preset theme colors for Application.Resources.
+      All color values live under Tokens/{ThemeName}/Light|Dark.axaml — edit colors there only.
+    -->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.KokkoroLight}"
+                         Source="avares://Kokkoro.Themes/Tokens/Kokkoro/Light.axaml" />
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.KokkoroDark}"
+                         Source="avares://Kokkoro.Themes/Tokens/Kokkoro/Dark.axaml" />
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.OceanLight}"
+                         Source="avares://Kokkoro.Themes/Tokens/Ocean/Light.axaml" />
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.OceanDark}"
+                         Source="avares://Kokkoro.Themes/Tokens/Ocean/Dark.axaml" />
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.ForestLight}"
+                         Source="avares://Kokkoro.Themes/Tokens/Forest/Light.axaml" />
+        <ResourceInclude x:Key="{x:Static themes:PresetKokkoroThemes.ForestDark}"
+                         Source="avares://Kokkoro.Themes/Tokens/Forest/Dark.axaml" />
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
+

@@ -1,0 +1,43 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:Kokkoro.Docking"
+        xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <local:AppHostWindow
+            Width="400"
+            Height="400"
+            ExtendClientAreaToDecorationsHint="True">
+
+            <!--            <local:AppHostWindow.LeftContent>
+            <TextBlock Text=" LeftContent"/>
+            </local:AppHostWindow.LeftContent>
+
+            <local:AppHostWindow.TitleBarContent>
+            <TextBlock Text=" TitleBarContent"/>
+            </local:AppHostWindow.TitleBarContent>
+
+            <local:AppHostWindow.RightContent>
+            <TextBlock Text=" RightContent"/>
+            </local:AppHostWindow.RightContent>-->
+
+        </local:AppHostWindow>
+    </Design.PreviewWith>
+
+    <Style Selector=":is(local|AppHostWindow)[ExtendClientAreaToDecorationsHint=True] u|WindowNotificationManager">
+        <Style Selector="^:topright">
+            <Setter Property="Margin" Value="0 36 0 0"/>
+        </Style>
+    </Style>
+
+    <Style Selector=":is(local|AppHostWindow)[ExtendClientAreaToDecorationsHint=True] u|WindowToastManager">
+        <Setter Property="Margin" Value="0 36 0 0"/>
+    </Style>
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Kokkoro/Styles/Docking/AppHostWindow.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+</Styles>

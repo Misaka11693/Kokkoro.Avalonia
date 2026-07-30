@@ -1,0 +1,200 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behaviors="using:Kokkoro.Behaviors"
+             xmlns:controls="using:Kokkoro.Controls"
+             xmlns:models="using:Kokkoro.Models"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.UsersPageView"
+             x:Name="UsersPageRoot"
+             x:DataType="vm:UsersPageViewModel"
+             mc:Ignorable="d"
+             d:DesignWidth="900"
+             d:DesignHeight="760"
+             MinHeight="0"
+             MinWidth="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="Transparent"
+             Focusable="True">
+    <Grid Margin="5"
+          MinWidth="0"
+          MinHeight="0"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          Background="Transparent"
+          ColumnDefinitions="Auto,*"
+          ColumnSpacing="5">
+        <controls:QuerySidePanel Grid.Column="0"
+                                 QueryCommand="{Binding QueryCommand}"
+                                 ResetCommand="{Binding ResetCommand}">
+            <Grid Classes="query-form"
+                  ColumnDefinitions="Auto,Auto"
+                  RowDefinitions="Auto,Auto">
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Classes="query-label"
+                           Text="编码" />
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         Text="{Binding QueryCriteria.Code, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Classes="query-label"
+                           Text="名称" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding QueryCriteria.Name, Mode=TwoWay}" />
+            </Grid>
+        </controls:QuerySidePanel>
+
+        <u:LoadingContainer Grid.Column="1"
+                            MinWidth="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            IsLoading="{Binding IsLoading}"
+                            LoadingMessage="加载中...">
+            <Border MinHeight="0"
+                    MinWidth="0"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Grid MinHeight="0"
+                      MinWidth="0"
+                      RowDefinitions="Auto,*">
+                    <controls:DocumentCommandBar>
+                        <u:IconButton Classes="Small Primary"
+                                      Icon="{StaticResource SemiIconPlus}"
+                                      Content="新增"
+                                      Command="{Binding AddCommand}"
+                                      Theme="{DynamicResource OutlineIconButton}" />
+                        <u:IconButton Classes="Small Secondary"
+                                      Icon="{StaticResource SemiIconEdit}"
+                                      Content="修改"
+                                      Command="{Binding EditCommand}"
+                                      Theme="{DynamicResource OutlineIconButton}" />
+                        <u:IconButton Classes="Small Danger"
+                                      Icon="{StaticResource SemiIconDelete}"
+                                      Content="删除"
+                                      Command="{Binding DeleteCommand}"
+                                      Theme="{DynamicResource OutlineIconButton}" />
+                        <controls:DocumentCommandBarSeparator />
+                        <u:IconButton Classes="Small Secondary"
+                                      Content="全选"
+                                      Click="OnSelectAllCurrentPageClick"
+                                      Theme="{DynamicResource OutlineIconButton}" />
+                        <u:IconButton Classes="Small Success"
+                                      Icon="{StaticResource SemiIconSave}"
+                                      Content="保存"
+                                      Command="{Binding SaveCommand}"
+                                      Theme="{DynamicResource SolidIconButton}" />
+                    </controls:DocumentCommandBar>
+
+                    <controls:PageView Grid.Row="1"
+                                       CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
+                                       PageSize="{Binding PageSize, Mode=TwoWay}"
+                                       TotalCount="{Binding TotalCount}"
+                                       SelectedCount="{Binding SelectedCount}"
+                                       ShowSelectedCount="True"
+                                       IsPagingEnabled="{Binding !IsLoading}"
+                                       LoadPageCommand="{Binding LoadPageCommand}">
+                        <DataGrid x:Name="UsersGrid"
+                                  MinHeight="0"
+                                  MinWidth="0"
+                                  AutoGenerateColumns="False"
+                                  BorderThickness="0"
+                                  CanUserReorderColumns="True"
+                                  CanUserResizeColumns="True"
+                                  CanUserSortColumns="True"
+                                  GridLinesVisibility="Horizontal"
+                                  HeadersVisibility="Column"
+                                  IsReadOnly="False"
+                                  ItemsSource="{Binding Users}"
+                                  SelectionChanged="OnUsersGridSelectionChanged"
+                                  SelectionMode="Extended">
+                            <DataGrid.Columns>
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Code}"
+                                                SortMemberPath="Code"
+                                                Header="用户编码" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Name}"
+                                                SortMemberPath="Name"
+                                                Header="姓名" />
+                            <behaviors:AgeBracketBehavior Width="72"
+                                                          MinWidth="64"
+                                                          x:DataType="models:User"
+                                                          Binding="{Binding Age}"
+                                                          SortMemberPath="Age"
+                                                          Header="年龄" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Department}"
+                                                SortMemberPath="Department"
+                                                Header="部门" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Role}"
+                                                SortMemberPath="Role"
+                                                Header="角色" />
+                            <DataGridTextColumn Width="160"
+                                                MinWidth="160"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Email}"
+                                                SortMemberPath="Email"
+                                                Header="邮箱" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:User"
+                                                Binding="{Binding Status}"
+                                                SortMemberPath="Status"
+                                                Header="状态" />
+                            <DataGridTextColumn Width="140"
+                                                x:DataType="models:User"
+                                                Binding="{Binding LastLoginAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"
+                                                SortMemberPath="LastLoginAt"
+                                                Header="最后登录" />
+                            <DataGridTemplateColumn Width="88"
+                                                    MinWidth="88"
+                                                    Header="操作"
+                                                    IsReadOnly="True"
+                                                    CanUserSort="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="models:User">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Spacing="4"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+                                            <u:IconButton Classes="Small Secondary"
+                                                          Icon="{StaticResource SemiIconEdit}"
+                                                          ToolTip.Tip="修改"
+														  IsEnabled="{Binding CanEdit}"
+                                                          Command="{Binding #UsersPageRoot.ViewModel.EditRowCommand}"
+                                                          CommandParameter="{Binding}"
+                                                          Theme="{DynamicResource OutlineIconButton}" />
+                                            <u:IconButton Classes="Small Danger"
+                                                          Icon="{StaticResource SemiIconDelete}"
+                                                          ToolTip.Tip="删除"
+                                                          Command="{Binding #UsersPageRoot.ViewModel.DeleteRowCommand}"
+                                                          CommandParameter="{Binding}"
+                                                          Theme="{DynamicResource OutlineIconButton}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </controls:PageView>
+                </Grid>
+            </Border>
+        </u:LoadingContainer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Ocean preset (Light) — only define colors here -->
+
+    <SolidColorBrush x:Key="SemiColorPrimary" Color="#2F7EEA" />
+    <SolidColorBrush x:Key="SemiColorPrimaryPointerover" Color="#2468CF" />
+    <SolidColorBrush x:Key="SemiColorPrimaryActive" Color="#1D55B0" />
+    <SolidColorBrush x:Key="SemiColorPrimaryDisabled" Color="#A7C8F7" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLight" Color="#EAF2FF" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLightPointerover" Color="#D8E8FF" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLightActive" Color="#C3DDFF" />
+
+    <SolidColorBrush x:Key="SemiColorText0" Color="#0C1B33" />
+    <SolidColorBrush x:Key="SemiColorText1" Color="#0C1B33" Opacity="0.86" />
+    <SolidColorBrush x:Key="SemiColorText2" Color="#324B73" />
+    <SolidColorBrush x:Key="SemiColorText3" Color="#324B73" Opacity="0.60" />
+
+    <SolidColorBrush x:Key="SemiColorBg0" Color="#F7FAFF" />
+    <SolidColorBrush x:Key="SemiColorBg1" Color="#EEF5FF" />
+    <SolidColorBrush x:Key="SemiColorBg2" Color="#E6F0FF" />
+
+    <SolidColorBrush x:Key="SemiColorFill0" Color="#2F7EEA" Opacity="0.06" />
+    <SolidColorBrush x:Key="SemiColorFill1" Color="#2F7EEA" Opacity="0.10" />
+    <SolidColorBrush x:Key="SemiColorFill2" Color="#2F7EEA" Opacity="0.14" />
+
+    <SolidColorBrush x:Key="SemiColorBorder" Color="#B9D3FF" Opacity="0.85" />
+    <SolidColorBrush x:Key="SemiColorFocusBorder" Color="#2F7EEA" />
+</ResourceDictionary>

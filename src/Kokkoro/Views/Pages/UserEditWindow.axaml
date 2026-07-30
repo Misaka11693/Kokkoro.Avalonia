@@ -1,0 +1,109 @@
+<u:UrsaWindow xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:vm="using:Kokkoro.ViewModels.Pages"
+              x:Class="Kokkoro.Views.Pages.UserEditWindow"
+              x:DataType="vm:UserEditViewModel"
+              Width="480"
+              Height="500"
+              MinWidth="440"
+              MinHeight="460"
+              CanResize="False"
+              WindowStartupLocation="CenterOwner"
+              ExtendClientAreaToDecorationsHint="True"
+              Title="{Binding Title}">
+    <Border Padding="20"
+            Background="{DynamicResource SemiColorBg0}">
+        <Grid RowDefinitions="*,Auto,Auto"
+              RowSpacing="16">
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="Auto,*"
+                  ColumnSpacing="12"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  RowSpacing="10">
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="用户编码" />
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         IsEnabled="{Binding CanEditCode}"
+                         Text="{Binding Code, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="姓名" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding Name, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="部门" />
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         Text="{Binding Department, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="角色" />
+                <TextBox Grid.Row="3"
+                         Grid.Column="1"
+                         Text="{Binding Role, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="邮箱" />
+                <TextBox Grid.Row="4"
+                         Grid.Column="1"
+                         Text="{Binding Email, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="5"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="年龄" />
+                <u:NumericIntUpDown Grid.Row="5"
+                                    Grid.Column="1"
+                                    Minimum="1"
+                                    Maximum="120"
+                                    Value="{Binding Age, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="6"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="状态" />
+                <ComboBox Grid.Row="6"
+                          Grid.Column="1"
+                          ItemsSource="{Binding StatusOptions}"
+                          SelectedItem="{Binding Status, Mode=TwoWay}" />
+            </Grid>
+
+            <Border Grid.Row="1"
+                    Padding="12,8"
+                    IsVisible="{Binding HasError}"
+                    Background="{DynamicResource SemiColorDangerLight}"
+                    BorderBrush="{DynamicResource SemiColorDanger}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <TextBlock Foreground="{DynamicResource SemiColorDanger}"
+                           Text="{Binding ErrorMessage}"
+                           TextWrapping="Wrap" />
+            </Border>
+
+            <StackPanel Grid.Row="2"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                <Button Content="取消"
+                        Click="OnCancelClick" />
+                <Button Classes="Primary"
+                        Content="确定"
+                        Click="OnConfirmClick" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</u:UrsaWindow>

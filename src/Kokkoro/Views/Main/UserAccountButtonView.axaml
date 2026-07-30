@@ -1,0 +1,81 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.ViewModels.Main"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Views.Main.UserAccountButtonView"
+             x:DataType="vm:UserAccountButtonViewModel">
+    <Button x:Name="AccountButton"
+            Background="Transparent"
+            Click="OnAccountButtonClick"
+            ToolTip.Tip="Account">
+        <Button.Flyout>
+            <Flyout Placement="BottomEdgeAlignedRight">
+                <Border Width="300"
+                        Padding="14"
+                        Background="{DynamicResource SemiColorBg1}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="14">
+                    <Grid RowDefinitions="Auto,Auto,Auto"
+                          RowSpacing="12">
+                        <Border Padding="16"
+                                Background="{DynamicResource SemiColorFill0}"
+                                CornerRadius="12">
+                            <StackPanel HorizontalAlignment="Center"
+                                        Spacing="10">
+                                <u:Avatar Width="56"
+                                          Height="56"
+                                          Classes="Blue"
+                                          Content="{Binding CurrentUser.AvatarText}" />
+                                <StackPanel Spacing="2">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               FontSize="{DynamicResource SemiFontSizeHeader5}"
+                                               FontWeight="SemiBold"
+                                               Text="{Binding CurrentUser.DisplayName}" />
+                                    <TextBlock HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource SemiColorText2}"
+                                               Text="{Binding CurrentUser.Email}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Row="1"
+                                    Spacing="6">
+                            <Button HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Left"
+                                    Content="Profile" />
+                            <Button HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Left"
+                                    Content="Account settings" />
+                        </StackPanel>
+
+                        <Border Grid.Row="2"
+                                Padding="0,12,0,0"
+                                BorderBrush="{DynamicResource SemiColorBorder}"
+                                BorderThickness="0,1,0,0">
+                            <Button HorizontalAlignment="Stretch"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Classes="Danger"
+                                     Command="{Binding SignOutCommand}"
+                                    Content="Sign out"
+                                    HorizontalContentAlignment="Left" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </Flyout>
+        </Button.Flyout>
+
+        <u:Avatar Width="18"
+                  Height="18"
+                  Classes="Blue"
+                  Content="{Binding CurrentUser.AvatarText}" />
+    </Button>
+</UserControl>

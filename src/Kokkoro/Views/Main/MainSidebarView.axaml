@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Main"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Views.Main.MainSidebarView"
+             x:DataType="vm:MainSidebarViewModel">
+    <Border Theme="{DynamicResource CardBorder}"
+            Padding="8"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+        <u:NavMenu
+                   HeaderBinding="{Binding Title}"
+                   CommandBinding="{Binding ActivateCommand}"
+                   IconBinding="{Binding Icon}"
+                   ItemsSource="{Binding NavigationItems}"
+                   SubMenuBinding="{Binding Children}"
+                   SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
+                   IsHorizontalCollapsed="{Binding IsCollapsed, Mode=TwoWay}"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch">
+            <u:NavMenu.Classes>enable_animation</u:NavMenu.Classes>
+            <u:NavMenu.Name>SidebarMenu</u:NavMenu.Name>
+            <u:NavMenu.Styles>
+                <!-- 选中叶子项：蓝字 + 加粗 -->
+                <!--                <Style Selector="u|NavMenuItem:selected">
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style Selector="u|NavMenuItem:selected /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style Selector="u|NavMenuItem:selected /template/ ContentPresenter#PART_HeaderPresenter TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                </Style> -->
+                <!-- 子项选中时父分组标题：蓝字 + 加粗 -->
+                <!--                <Style Selector="u|NavMenuItem:highlighted:not(:selected) /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource SemiBlue5}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+                <Style Selector="u|NavMenuItem:highlighted:not(:selected) /template/ ContentPresenter#PART_HeaderPresenter TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                </Style>-->
+            </u:NavMenu.Styles>
+            <u:NavMenu.IconTemplate>
+                <DataTemplate DataType="Geometry">
+                    <u:TwoTonePathIcon Data="{Binding}"
+                                       Width="16"
+                                       Height="16"
+                                       Foreground="{DynamicResource SemiPink4}"
+                                       StrokeBrush="{DynamicResource SemiPink4}"
+                                       ActiveForeground="{DynamicResource SemiPink4}"
+                                       ActiveStrokeBrush="{DynamicResource SemiPink4}"
+                                       IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"/>
+                </DataTemplate>
+            </u:NavMenu.IconTemplate>
+            <u:NavMenu.Header>
+                <StackPanel Margin="10,8,10,8"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                    <Border CornerRadius="8"
+                            Padding="4"
+                            Cursor="Hand"
+                            Background="Transparent"
+                            u:NavMenu.CanToggle="True">
+                        <Svg Width="30"
+                             Height="30"
+                             Stretch="Uniform"
+                             Path="/Assets/avalonia-logo.svg" />
+                    </Border>
+
+                    <TextBlock
+                        u:NavMenu.CanToggle="True" Cursor="Hand"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Text="Kokkoro 后台管理系统"
+                        IsVisible="{Binding !#SidebarMenu.IsHorizontalCollapsed}"
+                        FontSize="{DynamicResource SemiFontSizeHeader4}"
+                        FontWeight="SemiBold"
+                        Foreground="{DynamicResource SemiColorText0}" />
+                </StackPanel>
+
+            </u:NavMenu.Header>
+        </u:NavMenu>
+    </Border>
+</UserControl>

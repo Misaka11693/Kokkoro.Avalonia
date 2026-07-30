@@ -1,0 +1,42 @@
+<u:UrsaWindow x:Class="Kokkoro.Views.Main.MainWindow"
+              xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:vm="using:Kokkoro.ViewModels.Main"
+              xmlns:views="using:Kokkoro.Views.Main"
+              mc:Ignorable="d"
+              d:DesignWidth="1280"
+              d:DesignHeight="760"
+              Width="1280"
+              Height="760"
+              x:Name="MainWindowView"
+              x:DataType="vm:MainWindowViewModel"
+              MinHeight="520"
+              Icon="/Assets/avalonia-logo.ico"
+              Title="{Binding WindowTitle}"
+              Background="{DynamicResource SemiColorBg0}"
+              WindowStartupLocation="CenterScreen"
+              ExtendClientAreaToDecorationsHint="True"
+              IsFullScreenButtonVisible="{OnPlatform {x:False}, macOS={x:False}}"
+              IsManagedResizerVisible="{OnPlatform {x:False}, Linux={x:True}}">
+    <u:UrsaWindow.LeftContent>
+        <views:MainTitleBarLeftView DataContext="{Binding TitleBarLeft}" />
+    </u:UrsaWindow.LeftContent>
+    <u:UrsaWindow.TitleBarContent>
+        <views:MainTitleBarCenterView DataContext="{Binding TitleBarCenter}" />
+    </u:UrsaWindow.TitleBarContent>
+    <u:UrsaWindow.RightContent>
+        <views:MainTitleBarRightView DataContext="{Binding TitleBarRight}" />
+    </u:UrsaWindow.RightContent>
+    <Grid RowDefinitions="Auto,*,Auto"
+          Background="{DynamicResource SemiColorBg0}">
+        <views:MainTopBarView Grid.Row="0"
+                              DataContext="{Binding TopBar}" />
+        <views:MainContentView Grid.Row="1"
+                               DataContext="{Binding MainContent}" />
+        <views:MainStatusBarView Grid.Row="2"
+                                 DataContext="{Binding StatusBar}" />
+    </Grid>
+</u:UrsaWindow>

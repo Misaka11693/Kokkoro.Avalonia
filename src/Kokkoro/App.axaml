@@ -1,0 +1,80 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:docking="using:Kokkoro.Core.Workbench.Docking"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Kokkoro.App"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:kokkoro="using:Kokkoro.Themes"
+             xmlns:dock="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
+             RequestedThemeVariant="Light">
+    <Application.Styles>
+        <semi:SemiTheme Locale="zh-CN" />
+        <semi:UrsaSemiTheme Locale="zh-CN" />
+        <semi:DataGridSemiTheme />
+        <semi:DockSemiTheme />
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="AreSeparatorsVisible" Value="True" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <!-- 隔行变色：Avalonia 无 AlternatingRowBackground，用 nth-child -->
+        <Style Selector="DataGridRow:nth-child(even):not(:selected) /template/ Border#BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource DataGridRowAlternateBackground}" />
+        </Style>
+
+        <Style Selector="dock|DocumentControl:active">
+            <Setter Property="Background" Value="#0078D4"/>
+        </Style>
+        <StyleInclude  Source="/Styles/Docking/AppHostWindowStyles.axaml" />
+
+        <!--<kokkoro:PresetKokkoroThemes />
+        <semi:SemiPopupAnimations />-->
+    </Application.Styles>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceInclude Source="/Styles/Docking/AppHostWindow.axaml" />-->
+                <ResourceInclude Source="/Styles/DataGrid.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!--
+            <SolidColorBrush x:Key="DockTabActiveBackgroundBrush" Color="#3B82F6"/>
+            <SolidColorBrush x:Key="DockSurfaceHeaderBrush" Color="#E8F2FF"/>-->
+
+            <!--默认未选中 Tab-->
+            <!--            <StaticResource
+            x:Key="DocumentTabStripItemForeground"
+            ResourceKey="SemiColorText2"/>
+
+            <StaticResource
+            x:Key="DocumentTabStripItemBackground"
+            ResourceKey="SemiColorPrimary"/>-->
+
+
+            <!--Dock窗口非激活，但是Tab选中-->
+            <!--            <StaticResource
+            x:Key="DocumentTabStripItemSelectedInactiveBackground"
+            ResourceKey="SemiColorPrimary"/>-->
+
+
+            <!--当前激活Tab-->
+            <!--            <StaticResource
+            x:Key="DocumentTabStripItemSelectedActiveForeground"
+            ResourceKey="red"/>-->
+
+            <!--            <StaticResource
+            x:Key="DocumentTabStripItemSelectedActiveBackground"
+            ResourceKey="SemiColorPrimary"/>
+            -->
+
+            <!--鼠标悬停-->
+            <!--            <StaticResource
+            x:Key="DocumentTabStripItemUnselectedPointeroverForeground"
+            ResourceKey="SemiColorText0"/>
+
+            <StaticResource
+            x:Key="DocumentTabStripItemUnselectedPointeroverBackground"
+            ResourceKey="SemiColorPrimary"/>-->
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+
+</Application>

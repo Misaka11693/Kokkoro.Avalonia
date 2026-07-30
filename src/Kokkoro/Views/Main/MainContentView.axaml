@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Main"
+             xmlns:views="using:Kokkoro.Views.Main"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Views.Main.MainContentView"
+             x:DataType="vm:MainContentViewModel"
+             d:DesignWidth="1280"
+             d:DesignHeight="760"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="{DynamicResource SemiGrey0}">
+    <!-- <Grid ColumnDefinitions="Auto,*" -->
+    <!--       Margin="8" -->
+    <!--       ColumnSpacing="8"> -->
+    <!-- 	<views:MainSidebarView Grid.Column="0" DataContext="{Binding Sidebar}" /> -->
+    <!-- 	<views:MainPageView Grid.Column="1" DataContext="{Binding Page}" /> -->
+    <!-- </Grid> -->
+
+    <Grid ColumnDefinitions="Auto,*">
+        <views:MainSidebarView Grid.Column="0" DataContext="{Binding Sidebar}" />
+        <views:MainPageView Grid.Column="1" DataContext="{Binding Page}" />
+    </Grid>
+    <!--    <Grid ColumnDefinitions="250,Auto,*">
+    --><!-- 左侧 --><!--
+    <views:MainSidebarView
+    Grid.Column="0"
+    DataContext="{Binding Sidebar}" />
+
+    --><!-- 分隔条 --><!--
+    <GridSplitter
+    Grid.Column="1"
+    Width="4"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    ResizeDirection="Columns"
+    ResizeBehavior="PreviousAndNext"
+    ShowsPreview="False"/>
+
+    --><!-- 右侧 --><!--
+    <views:MainPageView
+    Grid.Column="2"
+    DataContext="{Binding Page}" />
+    </Grid>-->
+</UserControl>

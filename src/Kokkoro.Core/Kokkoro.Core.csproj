@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AvaloniaUseCompiledBindings>true</AvaloniaUseCompiledBindings>
+	</PropertyGroup>
+
+	<!--资源文件-->
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\avalonia-logo.ico" />
+		<AvaloniaResource Include="Assets\avalonia-logo1.ico" />
+		<AvaloniaResource Include="Assets\avalonia-logo2.ico" />
+		<AvaloniaResource Include="Assets\Images\Auth\signin-background.png" />
+		<AvaloniaResource Include="Assets\Images\Auth\signup-background.png" />
+	</ItemGroup>
+
+	<!--空文件夹占位-->
+	<ItemGroup>
+		<Folder Include="Constants\" />
+		<Folder Include="DependencyInjection\" />
+		<Folder Include="Exceptions\" />
+	</ItemGroup>
+
+	<!--NuGet 包引用-->
+	<ItemGroup>
+		<!-- Avalonia 核心 -->
+		<PackageReference Include="Avalonia" />
+		<PackageReference Include="Avalonia.Markup.Xaml.Loader" />
+		<PackageReference Include="HotAvalonia" />
+
+		<!-- 依赖注入 & 消息总线 -->
+		<PackageReference Include="MessagePipe" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+
+		<!-- Prism（暂时注释） -->
+		<!--<PackageReference Include="Prism.Avalonia" />
+		<PackageReference Include="Prism.DryIoc.Avalonia" />-->
+
+		<!-- ReactiveUI（MVVM + 源生成器） -->
+		<PackageReference Include="ReactiveUI.Avalonia" />
+		<PackageReference Include="ReactiveUI.SourceGenerators">
+			<!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
+			<!--允许传递-->
+			<!--<PrivateAssets>all</PrivateAssets>-->
+		</PackageReference>
+
+		<!-- 停靠布局 -->
+		<PackageReference Include="Dock.Model" />
+		<PackageReference Include="Dock.Model.ReactiveUI" />
+
+		<!-- Semi UI 控件库 -->
+		<PackageReference Include="Semi.Avalonia" />
+		<PackageReference Include="Semi.Avalonia.DataGrid" />
+		<PackageReference Include="Semi.Avalonia.Dock" />
+
+		<!-- Ursa UI 扩展 -->
+		<PackageReference Include="Irihi.Ursa" />
+		<PackageReference Include="Irihi.Ursa.ReactiveUIExtension" />
+		<PackageReference Include="Irihi.Ursa.Themes.Semi" />
+
+		<!-- SVG 渲染 -->
+		<PackageReference Include="Svg.Controls.Skia.Avalonia" />
+	</ItemGroup>
+
+</Project>

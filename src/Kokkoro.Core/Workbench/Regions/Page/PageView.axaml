@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:dock="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
+			 xmlns:docking="using:Kokkoro.Core.Workbench.Docking"
+			 xmlns:vm="using:Kokkoro.Core.Workbench.Regions.Page"
+			 mc:Ignorable="d" d:DesignWidth="280" d:DesignHeight="260"
+			 x:Class="Kokkoro.Core.Workbench.Regions.Page.PageView"
+			 x:DataType="vm:PageViewModel">
+
+	<UserControl.Styles>
+
+		<!-- 外层 CardBorder 负责描边；去掉 Dock 文档区重复边框 -->
+		<Style Selector="dock|DockControl.card-hosted dock|DocumentControl /template/ Border#PART_Border">
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+		</Style>
+
+		<Style Selector="dock|DockControl.card-hosted dock|DocumentControl /template/ ContentControl#PART_EmptyContentHost">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+		</Style>
+
+		<!--文档区标题栏的图标 + 文本-->
+		<Style Selector="DocumentControl">
+			<Setter Property="IconTemplate">
+				<DataTemplate DataType="docking:DocumentPage">
+					<PathIcon
+						Data="{Binding Icon}"
+						Foreground="{Binding IconForeground}"
+						Width="16"
+						Height="16"
+						Margin="0"
+						Padding="0,0,2,0" />
+				</DataTemplate>
+			</Setter>
+		</Style>
+
+		<Style Selector="DocumentControl">
+			<Setter Property="HeaderTemplate">
+				<DataTemplate DataType="docking:DocumentPage">
+					<TextBlock Text="{Binding Title}"
+							   VerticalAlignment="Center"
+							   Padding="2"  />
+				</DataTemplate>
+			</Setter>
+		</Style>
+
+		<Style Selector="dock|DocumentControl:active">
+			<Setter Property="Background" Value="#0078D4"/>
+		</Style>
+
+	</UserControl.Styles>
+
+	<Border VerticalAlignment="Stretch">
+		<StackPanel>
+			<dock:DockControl Margin="1"
+							  Classes="card-hosted"
+							  Layout="{Binding Layout}" />
+		</StackPanel>
+	</Border>
+</UserControl>

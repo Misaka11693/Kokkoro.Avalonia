@@ -1,0 +1,80 @@
+<u:UrsaWindow xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:vm="using:Kokkoro.ViewModels.Main"
+              mc:Ignorable="d"
+              x:Class="Kokkoro.Views.Main.AboutWindow"
+              x:DataType="vm:AboutWindowViewModel"
+              Width="520"
+              Height="400"
+              MinWidth="520"
+              MinHeight="400"
+              CanResize="True"
+              WindowStartupLocation="CenterOwner"
+              ExtendClientAreaToDecorationsHint="True"
+              Title="关于 Kokkoro">
+    <Border Padding="20" Background="{DynamicResource SemiColorBg0}">
+        <Grid RowDefinitions="Auto,*,Auto" RowSpacing="16">
+            <StackPanel Spacing="12">
+                <StackPanel Orientation="Horizontal" Spacing="14">
+                    <Border Width="64"
+                            Height="64"
+                            CornerRadius="16"
+                            Background="{DynamicResource SemiColorFill0}">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{DynamicResource SemiFontSizeHeader3}"
+                                   FontWeight="Bold"
+                                   Text="K" />
+                    </Border>
+
+                    <StackPanel VerticalAlignment="Center" Spacing="4">
+                        <TextBlock FontSize="{DynamicResource SemiFontSizeHeader3}"
+                                   FontWeight="Bold"
+                                   Text="{Binding ProductName}" />
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="一个用于学习与实验的轻量桌面应用外壳。" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <TabControl Grid.Row="1">
+                <TabItem Header="产品信息">
+                    <Border Padding="16">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{Binding ProductName, StringFormat=产品名称：{0}}" />
+                            <TextBlock Text="{Binding Version, StringFormat=版本号：{0}}" />
+                            <TextBlock Text="{Binding TechStack, StringFormat=技术栈：{0}}" />
+                            <TextBlock Text="{Binding Purpose, StringFormat=用途：{0}}" />
+                            <TextBlock Margin="0,8,0,0"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="{Binding Description}" />
+                        </StackPanel>
+                    </Border>
+                </TabItem>
+
+                <TabItem Header="运行环境">
+                    <Border Padding="16">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{Binding OsDescription}" />
+                            <TextBlock Text="{Binding DotNetVersion}" />
+                            <TextBlock Text="{Binding ProcessArchitecture}" />
+                            <TextBlock Text="{Binding OpenedAt}" />
+                        </StackPanel>
+                    </Border>
+                </TabItem>
+            </TabControl>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button MinWidth="88"
+                        Command="{Binding ConfirmCommand}"
+                        Content="确定" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</u:UrsaWindow>

@@ -1,0 +1,131 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.Messages.MessagesToastsSectionView"
+             x:DataType="vm:MessagesToastsSectionViewModel">
+    <Border Padding="16">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="15"
+                           FontWeight="SemiBold"
+                           Text="轻提示演示" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="这一页专门调整轻提示参数，并测试自动消失提示与批量关闭操作。" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="340,*"
+                  ColumnSpacing="16"
+                  RowDefinitions="Auto">
+                <Border Grid.Column="0"
+                        Padding="14"
+                        Background="{DynamicResource SemiColorFill0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold"
+                                       Text="轻提示设置" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="适合更轻量、自动消失的操作反馈。" />
+                        </StackPanel>
+                        <Grid ColumnDefinitions="100,*"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="12"
+                              RowSpacing="10">
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="持续时长" />
+                            <u:NumericIntUpDown Grid.Row="0"
+                                                Grid.Column="1"
+                                                Minimum="0"
+                                                Maximum="60"
+                                                Value="{Binding ToastTimeout, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="同屏数量" />
+                            <u:NumericIntUpDown Grid.Row="1"
+                                                Grid.Column="1"
+                                                Minimum="1"
+                                                Maximum="10"
+                                                Value="{Binding ToastMaxItems, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="提示外观" />
+                            <StackPanel Grid.Row="2"
+                                        Grid.Column="1"
+                                        Spacing="8">
+                                <ToggleSwitch IsChecked="{Binding ToastShowIcon, Mode=TwoWay}"
+                                              Content="显示图标" />
+                                <ToggleSwitch IsChecked="{Binding ToastShowClose, Mode=TwoWay}"
+                                              Content="显示关闭按钮" />
+                                <ComboBox ItemsSource="{Binding StyleModes}"
+                                          SelectedItem="{Binding SelectedToastStyleMode, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="提示类型" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="用于测试不同类型的轻提示表现，以及当前窗口上的全部关闭操作。" />
+                        </StackPanel>
+                        <WrapPanel Orientation="Horizontal"
+                                   ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button MinWidth="110"
+                                    Command="{Binding ShowInfoToastCommand}"
+                                    CommandParameter="{x:Null}"
+                                    Content="信息提示" />
+                            <Button MinWidth="110"
+                                    Classes="Success"
+                                    Command="{Binding ShowSuccessToastCommand}"
+                                    CommandParameter="{x:Null}"
+                                    Content="成功提示" />
+                            <Button MinWidth="110"
+                                    Classes="Warning"
+                                    Command="{Binding ShowWarningToastCommand}"
+                                    CommandParameter="{x:Null}"
+                                    Content="警告提示" />
+                            <Button MinWidth="110"
+                                    Classes="Danger"
+                                    Command="{Binding ShowErrorToastCommand}"
+                                    CommandParameter="{x:Null}"
+                                    Content="错误提示" />
+                        </WrapPanel>
+                        <Border Height="1"
+                                Background="{DynamicResource SemiColorBorder}" />
+                        <WrapPanel Orientation="Horizontal"
+                                   ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button MinWidth="128"
+                                    Classes="Primary"
+                                    Command="{Binding CloseAllToastsCommand}"
+                                    CommandParameter="{x:Null}"
+                                    Content="关闭全部提示" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,62 @@
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:local="using:Kokkoro.Controls"
+                xmlns:u="https://irihi.tech/ursa"
+                x:Class="Kokkoro.Controls.PageView"
+                MinHeight="0"
+                MinWidth="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+    <ContentControl.Template>
+        <ControlTemplate TargetType="local:PageView">
+            <Grid MinHeight="0"
+                  MinWidth="0"
+                  RowDefinitions="*,Auto">
+                <ContentPresenter Grid.Row="0"
+                                  MinHeight="0"
+                                  MinWidth="0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                <Border Grid.Row="1"
+                        Padding="8,6"
+                        Background="{DynamicResource SemiColorFill0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="0,1,0,0"
+                        ClipToBounds="False">
+                    <ScrollViewer MinWidth="0"
+                                  ClipToBounds="False"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Disabled">
+                        <Grid ColumnDefinitions="Auto,*,Auto"
+                              ColumnSpacing="12">
+                            <StackPanel Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="16">
+                                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                           Text="{Binding TotalCount, RelativeSource={RelativeSource TemplatedParent}, StringFormat=共 {0} 条}" />
+                                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                           IsVisible="{Binding ShowSelectedCount, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Text="{Binding SelectedCount, RelativeSource={RelativeSource TemplatedParent}, StringFormat=已选 {0} 条}" />
+                            </StackPanel>
+                            <u:Pagination Grid.Column="2"
+                                          VerticalAlignment="Center"
+                                          Command="{Binding LoadPageCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                          CommandParameter="{Binding LoadPageCommandParameter, RelativeSource={RelativeSource TemplatedParent}}"
+                                          CurrentPage="{Binding CurrentPage, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          DisplayCurrentPageInQuickJumper="{Binding DisplayCurrentPageInQuickJumper, RelativeSource={RelativeSource TemplatedParent}}"
+                                          IsEnabled="{Binding IsPagingEnabled, RelativeSource={RelativeSource TemplatedParent}}"
+                                          PageSize="{Binding PageSize, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          PageSizeOptions="{Binding PageSizeOptions, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ShowPageSizeSelector="{Binding ShowPageSizeSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ShowQuickJump="{Binding ShowQuickJumper, RelativeSource={RelativeSource TemplatedParent}}"
+                                          TotalCount="{Binding TotalCount, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </ContentControl.Template>
+</ContentControl>

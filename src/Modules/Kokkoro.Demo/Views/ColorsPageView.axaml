@@ -1,0 +1,82 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:Kokkoro.Sample.Controls"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+			 x:Class="Kokkoro.Sample.Views.ColorsPageView"
+			 x:DataType="vm:ColorsPageViewModel"
+			 Background="Transparent"
+			 Focusable="True">
+
+	<Design.DataContext>
+		<vm:ColorsPageViewModel />
+    </Design.DataContext> 
+
+	<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+				  VerticalScrollBarVisibility="Auto">
+		<StackPanel Margin="20" Spacing="24">
+			<StackPanel Spacing="8">
+				<TextBlock FontSize="{DynamicResource SemiFontSizeHeader2}"
+						   FontWeight="SemiBold"
+						   Foreground="{DynamicResource SemiColorText0}"
+						   Text="🎨 常用颜色" />
+				<TextBlock Foreground="{DynamicResource SemiColorText2}"
+						   TextWrapping="Wrap"
+						   FontSize="{DynamicResource SemiFontSizeBody1}"
+						   Text="Semi Design 色彩 Token 一览" />
+			</StackPanel>
+			<ItemsControl ItemsSource="{Binding Sections}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Spacing="16" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="vm:ColorTokenSection">
+						<Border Padding="16"
+								BorderBrush="{DynamicResource SemiColorBorder}"
+								BorderThickness="1"
+								CornerRadius="8">
+							<StackPanel Spacing="16">
+								<TextBlock FontSize="{DynamicResource SemiFontSizeHeader5}"
+										   FontWeight="SemiBold"
+										   Foreground="{DynamicResource SemiColorPrimary}"
+										   Text="{Binding Title}" />
+
+								<ItemsControl ItemsSource="{Binding Groups}">
+									<ItemsControl.ItemsPanel>
+										<ItemsPanelTemplate>
+											<StackPanel Spacing="12" />
+										</ItemsPanelTemplate>
+									</ItemsControl.ItemsPanel>
+									<ItemsControl.ItemTemplate>
+										<DataTemplate DataType="vm:ColorTokenGroup">
+											<StackPanel Spacing="8">
+												<TextBlock FontSize="{DynamicResource SemiFontSizeHeader6}"
+														   FontWeight="SemiBold"
+														   Foreground="{DynamicResource SemiColorText0}"
+														   Text="{Binding Title}" />
+												<ItemsControl ItemsSource="{Binding Tokens}">
+													<ItemsControl.ItemsPanel>
+														<ItemsPanelTemplate>
+															<WrapPanel Orientation="Horizontal" />
+														</ItemsPanelTemplate>
+													</ItemsControl.ItemsPanel>
+													<ItemsControl.ItemTemplate>
+														<DataTemplate>
+															<controls:ThemeColorSwatch Margin="0,0,8,8"
+																					   Token="{Binding}" />
+														</DataTemplate>
+													</ItemsControl.ItemTemplate>
+												</ItemsControl>
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

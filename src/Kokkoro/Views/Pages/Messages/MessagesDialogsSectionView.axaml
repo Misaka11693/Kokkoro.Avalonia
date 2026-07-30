@@ -1,0 +1,139 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.Messages.MessagesDialogsSectionView"
+             x:DataType="vm:MessagesDialogsSectionViewModel">
+    <Border Padding="16">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="15"
+                           FontWeight="SemiBold"
+                           Text="对话框演示" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="集中展示桌面模态对话框和覆盖层对话框，方便对比两种交互方式。" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16"
+                  RowDefinitions="Auto">
+                <Border Grid.Column="0"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="桌面模态对话框" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="适合桌面端标准消息框与确认框场景。" />
+                        </StackPanel>
+                        <StackPanel Spacing="10">
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="常用消息" />
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="110"
+                                        Command="{Binding ShowInfoCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="信息消息" />
+                                <Button MinWidth="110"
+                                        Classes="Success"
+                                        Command="{Binding ShowSuccessCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="成功消息" />
+                                <Button MinWidth="110"
+                                        Classes="Warning"
+                                        Command="{Binding ShowWarningCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="警告消息" />
+                                <Button MinWidth="110"
+                                        Classes="Danger"
+                                        Command="{Binding ShowErrorCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="错误消息" />
+                            </WrapPanel>
+                            <Border Height="1"
+                                    Background="{DynamicResource SemiColorBorder}" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="交互与异常" />
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="110"
+                                        Classes="Primary"
+                                        Command="{Binding AskQuestionCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="询问对话框" />
+                                <Button MinWidth="110"
+                                        Classes="Danger"
+                                        Command="{Binding ShowExceptionCommand}"
+                                        CommandParameter="{x:Null}"
+                                        Content="异常消息" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="覆盖层对话框" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="适合浏览器或移动端这类覆盖层反馈场景。" />
+                        </StackPanel>
+                        <StackPanel Spacing="10">
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="常用消息" />
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="110"
+                                        Command="{Binding ShowOverlayInfoCommand}"
+                                        Content="信息消息" />
+                                <Button MinWidth="110"
+                                        Classes="Success"
+                                        Command="{Binding ShowOverlaySuccessCommand}"
+                                        Content="成功消息" />
+                                <Button MinWidth="110"
+                                        Classes="Warning"
+                                        Command="{Binding ShowOverlayWarningCommand}"
+                                        Content="警告消息" />
+                                <Button MinWidth="110"
+                                        Classes="Danger"
+                                        Command="{Binding ShowOverlayErrorCommand}"
+                                        Content="错误消息" />
+                            </WrapPanel>
+                            <Border Height="1"
+                                    Background="{DynamicResource SemiColorBorder}" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="交互与异常" />
+                            <WrapPanel Orientation="Horizontal"
+                                       ItemSpacing="8"
+                                       LineSpacing="8">
+                                <Button MinWidth="110"
+                                        Classes="Primary"
+                                        Command="{Binding AskOverlayQuestionCommand}"
+                                        Content="询问对话框" />
+                                <Button MinWidth="110"
+                                        Classes="Danger"
+                                        Command="{Binding ShowOverlayExceptionCommand}"
+                                        Content="异常消息" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

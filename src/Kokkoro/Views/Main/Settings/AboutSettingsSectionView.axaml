@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Main.Settings"
+             x:Class="Kokkoro.Views.Main.Settings.AboutSettingsSectionView"
+             x:DataType="vm:AboutSettingsSectionViewModel">
+    <StackPanel Spacing="20">
+        <Border Padding="16"
+                CornerRadius="8"
+                Background="{DynamicResource SemiColorFill0}"
+                BorderBrush="{DynamicResource SemiColorBorder}"
+                BorderThickness="1">
+            <StackPanel Spacing="10">
+                <TextBlock Text="{Binding ProductName, StringFormat=产品名称：{0}}" />
+                <TextBlock Text="{Binding Version, StringFormat=版本：{0}}" />
+                <TextBlock Text="{Binding TechStack, StringFormat=技术栈：{0}}" />
+                <TextBlock Text="{Binding Runtime, StringFormat=运行时：{0}}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>

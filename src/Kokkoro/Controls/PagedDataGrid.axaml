@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:u="https://irihi.tech/ursa"
+             x:Class="Kokkoro.Controls.PagedDataGrid"
+             x:Name="Root"
+             MinHeight="0"
+             MinWidth="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <!-- 上行：数据表格；下行：底栏统计 + 分页器 -->
+    <Grid MinHeight="0"
+          MinWidth="0"
+          RowDefinitions="*,Auto">
+        <!-- PART_DataGrid 为代码隐藏中的命名部件，勿改名 -->
+        <DataGrid x:Name="PART_DataGrid"
+                  Grid.Row="0"
+                  MinHeight="0"
+                  MinWidth="0"
+                  AutoGenerateColumns="False"
+                  BorderThickness="0"
+                  CanUserReorderColumns="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  GridLinesVisibility="Horizontal"
+                  HeadersVisibility="Column"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding ItemsSource, ElementName=Root}"
+                  SelectionMode="Extended" />
+        <!-- ClipToBounds=False：避免 PageSize 下拉被底栏裁切 -->
+        <Border Grid.Row="1"
+                Padding="8,6"
+                Background="{DynamicResource SemiColorFill0}"
+                BorderBrush="{DynamicResource SemiColorBorder}"
+                BorderThickness="0,1,0,0"
+                ClipToBounds="False">
+            <ScrollViewer MinWidth="0"
+                          ClipToBounds="False"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Disabled">
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      ColumnSpacing="12">
+                    <!-- 左侧：总条数 / 已选条数（SelectedCount 由控件内部维护） -->
+                    <StackPanel Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal"
+                                Spacing="16">
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="{Binding TotalCount, ElementName=Root, StringFormat=共 {0} 条}" />
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="{Binding SelectedCount, ElementName=Root, StringFormat=已选 {0} 条}" />
+                    </StackPanel>
+                    <!-- 右侧：Ursa 分页器，CurrentPage / PageSize 与 Root 双向绑定 -->
+                    <u:Pagination Grid.Column="2"
+                                  VerticalAlignment="Center"
+                                  CurrentPage="{Binding CurrentPage, ElementName=Root, Mode=TwoWay}"
+                                  DisplayCurrentPageInQuickJumper="True"
+                                  IsEnabled="{Binding IsPagingEnabled, ElementName=Root}"
+                                  PageSize="{Binding PageSize, ElementName=Root, Mode=TwoWay}"
+                                  PageSizeOptions="{Binding PageSizeOptions, ElementName=Root}"
+                                  ShowPageSizeSelector="True"
+                                  ShowQuickJump="True"
+                                  TotalCount="{Binding TotalCount, ElementName=Root}" />
+                </Grid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

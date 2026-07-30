@@ -1,0 +1,69 @@
+<u:UrsaWindow xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:semi="https://irihi.tech/semi"
+              xmlns:dialogs="clr-namespace:Kokkoro.Core.UI.Dialogs"
+              mc:Ignorable="d"
+              d:DesignWidth="800"
+              d:DesignHeight="450"
+              x:Class="Kokkoro.Core.UI.Dialogs.KokkoroDialogWindow"
+              x:DataType="dialogs:KokkoroDialogWindow"
+              ExtendClientAreaToDecorationsHint="True"
+              IsFullScreenButtonVisible="False"
+              Title="KokkoroDialogWindow">
+    <u:UrsaWindow.LeftContent>
+        <StackPanel Orientation="Horizontal"
+                    Margin="12,0,0,0"
+                    Spacing="8"
+                    VerticalAlignment="Center">
+            <Image Width="16"
+                   Height="16"
+                   VerticalAlignment="Center"
+                   Source="/Assets/avalonia-logo.ico" />
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Text="{Binding Title, RelativeSource={RelativeSource AncestorType=dialogs:KokkoroDialogWindow}}" />
+        </StackPanel>
+    </u:UrsaWindow.LeftContent>
+
+    <Border Margin="0,30,0,0"
+            Background="{DynamicResource SemiColorBg0}"
+            BorderBrush="#DADADA"
+            BorderThickness="0,1,0,0"
+            CornerRadius="0">
+
+        <Grid RowDefinitions="*,Auto">
+
+            <ContentPresenter x:Name="PART_Content"
+                              Grid.Row="0"
+                              Margin="12" />
+
+            <Border x:Name="PART_CommandBar"
+                    Grid.Row="1"
+                    IsVisible="False"
+                    Padding="10,8"
+                    Background="#F8F8F8"
+                    BorderBrush="#DADADA"
+                    BorderThickness="0,1,0,0"
+                    CornerRadius="0,0,4,4">
+
+                <ScrollViewer
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Disabled">
+
+                    <StackPanel
+                        x:Name="PART_CommandPanel"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8" />
+
+                </ScrollViewer>
+
+            </Border>
+
+        </Grid>
+    </Border>
+</u:UrsaWindow>

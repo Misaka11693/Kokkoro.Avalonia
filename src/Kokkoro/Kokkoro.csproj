@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Backups\**\*.cs" />
+    <Compile Remove="_probe\**\*.cs" />
+    <AvaloniaXaml Remove="Backups\**\*.axaml" />
+    <None Include="Backups\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kokkoro.Core\Kokkoro.Core.csproj" />
+    <ProjectReference Include="..\Kokkoro.Services\Kokkoro.Services.csproj" />
+    <ProjectReference Include="..\Kokkoro.Themes\Kokkoro.Themes.csproj" />
+    <ProjectReference Include="..\Modules\Kokkoro.Demo\Kokkoro.Sample.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Avalonia -->
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+
+    <!-- Dock -->
+    <PackageReference Include="Dock.Model" />
+    <PackageReference Include="Dock.Model.ReactiveUI" />
+
+    <!-- Microsoft -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+
+    <!-- Mapping -->
+    <PackageReference Include="Mapster" />
+
+    <!-- ReactiveUI -->
+    <!--<PackageReference Include="ReactiveUI.Avalonia" />-->
+    <!--<PackageReference Include="ReactiveUI.SourceGenerators">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>-->
+
+    <!-- Semi -->
+    <PackageReference Include="Semi.Avalonia" />
+    <PackageReference Include="Semi.Avalonia.DataGrid" />
+    <PackageReference Include="Semi.Avalonia.Dock" />
+
+    <!-- Ursa -->
+    <PackageReference Include="Irihi.Ursa" />
+    <PackageReference Include="Irihi.Ursa.ReactiveUIExtension" />
+    <PackageReference Include="Irihi.Ursa.Themes.Semi" />
+  </ItemGroup>
+</Project>

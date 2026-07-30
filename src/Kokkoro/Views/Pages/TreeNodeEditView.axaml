@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.TreeNodeEditView"
+             x:DataType="vm:TreeNodeEditViewModel"
+             Width="420">
+    <Border Padding="20">
+        <StackPanel Spacing="16">
+
+            <!-- 父节点提示 -->
+            <Border IsVisible="{Binding ParentNodeHint, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Padding="10,8"
+                    Background="{DynamicResource SemiColorFill0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="{Binding ParentNodeHint}" />
+            </Border>
+
+            <!-- 表单 -->
+            <Grid ColumnDefinitions="80,*"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  ColumnSpacing="12"
+                  RowSpacing="12">
+
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="节点名称" />
+                <TextBox Grid.Row="0" Grid.Column="1"
+                         PlaceholderText="请输入节点名称"
+                         Text="{Binding NodeName, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="节点类型" />
+                <TextBox Grid.Row="1" Grid.Column="1"
+                         PlaceholderText="如：根节点 / 部门 / 子菜单"
+                         Text="{Binding NodeType, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="描述" />
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         PlaceholderText="可选"
+                         Text="{Binding Description, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="排序号" />
+                <u:NumericIntUpDown Grid.Row="3" Grid.Column="1"
+                                    Minimum="1"
+                                    Value="{Binding Order, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="启用状态" />
+                <ToggleSwitch Grid.Row="4" Grid.Column="1"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+                              OnContent="启用"
+                              OffContent="禁用" />
+            </Grid>
+
+            <!-- 操作按钮 -->
+            <!-- <StackPanel HorizontalAlignment="Right" -->
+            <!--             Orientation="Horizontal" -->
+            <!--             Spacing="8"> -->
+            <!--     <Button MinWidth="88" -->
+            <!--             Command="{Binding CancelCommand}" -->
+            <!--             Content="取消" /> -->
+            <!--     <Button MinWidth="88" -->
+            <!--             Classes="Primary" -->
+            <!--             Command="{Binding ConfirmCommand}" -->
+            <!--             Content="确定" /> -->
+            <!-- </StackPanel> -->
+        </StackPanel>
+    </Border>
+</UserControl>

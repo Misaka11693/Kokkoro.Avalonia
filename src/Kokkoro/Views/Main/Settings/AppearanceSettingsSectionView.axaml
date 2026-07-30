@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Main.Settings"
+             x:Class="Kokkoro.Views.Main.Settings.AppearanceSettingsSectionView"
+             x:DataType="vm:AppearanceSettingsSectionViewModel">
+    <StackPanel Spacing="20">
+        <Border Padding="16"
+                CornerRadius="8"
+                Background="{DynamicResource SemiColorFill0}"
+                BorderBrush="{DynamicResource SemiColorBorder}"
+                BorderThickness="1">
+            <Grid ColumnDefinitions="*,220"
+                  ColumnSpacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock FontSize="{DynamicResource SemiFontSizeHeader6}"
+                               FontWeight="SemiBold"
+                               Text="主题模式" />
+                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                               Text="支持跟随系统、浅色、深色，以及 Semi 的海洋、沙漠、黄昏和夜空主题。" />
+                </StackPanel>
+
+                <ComboBox Grid.Column="1"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding ThemeOptions}"
+                          SelectedItem="{Binding SelectedTheme, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ThemeOptionViewModel">
+                            <TextBlock Text="{Binding Label}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

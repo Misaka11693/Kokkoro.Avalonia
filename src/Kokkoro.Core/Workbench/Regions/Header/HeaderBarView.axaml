@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Kokkoro.Core.Workbench.Regions.Header"
+             xmlns:header="clr-namespace:Kokkoro.Core.Workbench.Regions.Header"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Core.Workbench.Regions.Header.HeaderBarView"
+             x:DataType="vm:HeaderBarViewModel">
+    <Border Margin="0,32,0,0"
+            Padding="12,0"
+            MinHeight="40"
+            Background="{DynamicResource SemiColorBg0}"
+            BorderBrush="{DynamicResource SemiColorBorder}"
+            BorderThickness="0,0,0,1">
+        <Grid ColumnDefinitions="*,*,Auto"
+              ColumnSpacing="8">
+            <Grid Grid.Column="0" />
+            <Grid Grid.Column="1" />
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button x:Name="PageActionsButton"
+                        Classes="kokkoro-toolbar"
+                        Width="52"
+                        ToolTip.Tip="页面操作">
+                    <Button.Flyout>
+                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                            <MenuItem Header="关闭当前页"
+                                      Command="{Binding CloseCurrentPageCommand}" />
+                            <MenuItem Header="关闭其他页"
+                                      Command="{Binding CloseOtherPagesCommand}" />
+                            <MenuItem Header="关闭全部页"
+                                      Command="{Binding CloseAllPagesCommand}" />
+                            <Separator />
+                            <MenuItem Header="设置"
+                                      Click="OnSettingsMenuItemClick" />
+                            <MenuItem Header="关于"
+                                      Click="OnAboutMenuItemClick" />
+                        </MenuFlyout>
+                    </Button.Flyout>
+
+                    <PathIcon Width="14"
+                              Height="14"
+                              VerticalAlignment="Center"
+                              Foreground="{DynamicResource SemiColorText0}"
+                              Theme="{DynamicResource InnerPathIcon}"
+                              Data="{StaticResource SemiIconMenu}" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Forest preset (Light) — only define colors here -->
+
+    <SolidColorBrush x:Key="SemiColorPrimary" Color="#2FAE8A" />
+    <SolidColorBrush x:Key="SemiColorPrimaryPointerover" Color="#269474" />
+    <SolidColorBrush x:Key="SemiColorPrimaryActive" Color="#1F7C62" />
+    <SolidColorBrush x:Key="SemiColorPrimaryDisabled" Color="#A8E0D0" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLight" Color="#E9FBF5" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLightPointerover" Color="#D7F6EC" />
+    <SolidColorBrush x:Key="SemiColorPrimaryLightActive" Color="#C2F0E1" />
+
+    <SolidColorBrush x:Key="SemiColorText0" Color="#10261D" />
+    <SolidColorBrush x:Key="SemiColorText1" Color="#10261D" Opacity="0.86" />
+    <SolidColorBrush x:Key="SemiColorText2" Color="#2E4D41" />
+    <SolidColorBrush x:Key="SemiColorText3" Color="#2E4D41" Opacity="0.60" />
+
+    <SolidColorBrush x:Key="SemiColorBg0" Color="#FAFBF9" />
+    <SolidColorBrush x:Key="SemiColorBg1" Color="#F2F7F4" />
+    <SolidColorBrush x:Key="SemiColorBg2" Color="#EAF3EE" />
+
+    <SolidColorBrush x:Key="SemiColorFill0" Color="#2FAE8A" Opacity="0.06" />
+    <SolidColorBrush x:Key="SemiColorFill1" Color="#2FAE8A" Opacity="0.10" />
+    <SolidColorBrush x:Key="SemiColorFill2" Color="#2FAE8A" Opacity="0.14" />
+
+    <SolidColorBrush x:Key="SemiColorBorder" Color="#B7E6D8" Opacity="0.85" />
+    <SolidColorBrush x:Key="SemiColorFocusBorder" Color="#2FAE8A" />
+</ResourceDictionary>
+

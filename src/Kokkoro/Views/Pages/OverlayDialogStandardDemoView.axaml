@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.OverlayDialogStandardDemoView"
+             x:DataType="vm:OverlayDialogStandardDemoViewModel">
+    <Border Padding="8">
+        <StackPanel Spacing="12">
+            <TextBlock FontSize="15"
+                       FontWeight="SemiBold"
+                       Text="标准内容区预览" />
+
+            <Border Padding="14"
+                    Background="{DynamicResource SemiColorFill0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <TextBlock TextWrapping="Wrap"
+                           Text="{Binding Message}" />
+            </Border>
+
+            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                       TextWrapping="Wrap"
+                       Text="{Binding Description}" />
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,66 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dock="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
+                    xmlns:docking="using:Kokkoro.Core.Workbench.Docking"
+                    xmlns:controls="clr-namespace:Dock.Model.Controls;assembly=Dock.Model"
+                    xmlns:local="using:Kokkoro.Docking"
+                    xmlns:u="https://irihi.tech/ursa">
+    <Design.PreviewWith>
+        <docking:AppHostWindow IsToolWindow="False" Width="200" Height="200" />
+    </Design.PreviewWith>
+    <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
+    <ControlTheme x:Key="{x:Type local:AppHostWindow}" TargetType="local:AppHostWindow"
+                  BasedOn="{StaticResource {x:Type dock:HostWindow}}">
+        <Setter Property="Background" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
+        <Setter Property="u:OverlayDialogHost.IsModalStatusScope" Value="True" />
+        <Setter Property="WindowDecorationsTheme" Value="{DynamicResource KEY_URSAWINDOW_DRAWN_DECORATIONS}" />
+        <Setter Property="WindowDecorations" Value="{x:Static WindowDecorations.Full}" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="local:AppHostWindow">
+                <Panel>
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BackgroundSizing="InnerBorderEdge"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        IsHitTestVisible="False" />
+                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" Background="Transparent" />
+                    <VisualLayerManager
+                        Name="PART_VisualLayerManager"
+                        Padding="{TemplateBinding OffScreenMargin, Mode=OneWay}">
+                        <Panel>
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <u:TitleBar
+                                Name="PART_TitleBar"
+                                VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding IsTitleBarVisible}"
+                                HorizontalAlignment="Stretch"
+                                LeftContent="{TemplateBinding LeftContent}"
+                                RightContent="{TemplateBinding RightContent}"
+                                CenterContent="{TemplateBinding TitleBarContent}"
+                                WindowDecorationProperties.ElementRole="TitleBar" />
+                            <u:OverlayDialogHost
+                                Name="{x:Static local:AppHostWindow.PART_DialogHost}"
+                                SafePadding="{TemplateBinding WindowDecorationMargin}"
+                                IsModalStatusReporter="True"
+                                IsTopLevel="True" />
+                        </Panel>
+                    </VisualLayerManager>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

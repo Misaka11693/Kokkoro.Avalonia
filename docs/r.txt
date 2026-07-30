@@ -1,0 +1,21 @@
+项目	类型
+MyApp.Core	普通 Class Library
+MyApp.Application	普通 Class Library
+MyApp	Avalonia Xaml Library
+MyApp.Desktop	Avalonia Desktop
+MyApp.Browser	Avalonia Browser
+MyApp.Android	Avalonia Android
+MyApp.iOS	Avalonia iOS
+
+Core
+ ↑
+
+Application
+ ↑
+
+MyApp
+ ↑
+ ├─ Desktop
+ ├─ Browser
+ ├─ Android
+ └─ iOS

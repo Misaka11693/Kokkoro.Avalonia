@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.OverlayDialogCustomDemoView"
+             x:DataType="vm:OverlayDialogCustomDemoViewModel">
+    <Border Padding="12">
+        <StackPanel Spacing="14">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="16"
+                           FontWeight="SemiBold"
+                           Text="{Binding Header}" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Message}" />
+            </StackPanel>
+
+            <Border Padding="14"
+                    Background="{DynamicResource SemiColorFill0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <StackPanel Spacing="10">
+                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                               Text="可编辑内容" />
+                    <TextBox AcceptsReturn="True"
+                             MinHeight="96"
+                             TextWrapping="Wrap"
+                             Text="{Binding InputText, Mode=TwoWay}" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="8">
+                <Button MinWidth="100"
+                        Command="{Binding CancelCommand}"
+                        Content="取消" />
+                <Button MinWidth="120"
+                        Classes="Primary"
+                        Command="{Binding ConfirmCommand}"
+                        Content="提交并关闭" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

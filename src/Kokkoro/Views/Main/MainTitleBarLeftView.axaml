@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Kokkoro.ViewModels.Main"
+             mc:Ignorable="d"
+             x:Class="Kokkoro.Views.Main.MainTitleBarLeftView"
+             x:DataType="vm:MainTitleBarLeftViewModel">
+    <StackPanel Orientation="Horizontal"
+                Spacing="8"
+                Margin="12,0,0,0"
+                VerticalAlignment="Center">
+        <Image Width="24"
+               Height="24"
+               Source="/Assets/avalonia-logo.ico" />
+        <TextBlock VerticalAlignment="Center"
+                   FontSize="{DynamicResource SemiFontSizeRegular}"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource SemiColorText0}"
+                   Text="{Binding AppName}" />
+    </StackPanel>
+</UserControl>

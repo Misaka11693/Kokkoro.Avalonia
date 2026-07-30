@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.ViewModels.Pages"
+             x:Class="Kokkoro.Views.Pages.Messages.MessagesResultSectionView"
+             x:DataType="vm:MessagesResultViewModel">
+    <Border Padding="16"
+            Background="{DynamicResource SemiColorBg0}"
+            BorderBrush="{DynamicResource SemiColorBorder}"
+            BorderThickness="1"
+            CornerRadius="4">
+        <Grid ColumnDefinitions="Auto,*"
+              ColumnSpacing="12">
+            <Border Width="4"
+                    Background="{DynamicResource SemiColorPrimary}"
+                    CornerRadius="2" />
+            <StackPanel Grid.Column="1"
+                        Spacing="8">
+                <TextBlock FontWeight="SemiBold"
+                           Text="上次操作结果" />
+                <Border Padding="12"
+                        Background="{DynamicResource SemiColorFill0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <TextBlock FontFamily="Consolas, Menlo, monospace"
+                               FontSize="13"
+                               TextWrapping="Wrap"
+                               Text="{Binding LastResult}" />
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,195 @@
+<ContentControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:local="using:Kokkoro.Controls"
+                xmlns:u="https://irihi.tech/ursa"
+                x:Class="Kokkoro.Controls.QuerySidePanel">
+    <ContentControl.Resources>
+        <DataTemplate x:Key="QueryToolbarQueryIconTemplate">
+            <!-- ReSharper disable once Xaml.CompiledBindingMissingDataTypeErrorHighlighting -->
+            <PathIcon Classes="query-toolbar-icon"
+                      Foreground="{DynamicResource SemiColorPrimaryActive}"
+                      Data="{Binding}" />
+        </DataTemplate>
+        <DataTemplate x:Key="QueryToolbarResetIconTemplate">
+            <!-- ReSharper disable once Xaml.CompiledBindingMissingDataTypeErrorHighlighting -->
+            <PathIcon Classes="query-toolbar-icon"
+                      Foreground="{DynamicResource SemiColorSuccess}"
+                      Data="{Binding}" />
+        </DataTemplate>
+        <DataTemplate x:Key="QueryExpandIconTemplate">
+            <!-- ReSharper disable once Xaml.CompiledBindingMissingDataTypeErrorHighlighting -->
+            <PathIcon Foreground="{DynamicResource SemiColorPrimaryActive}"
+                      Data="{Binding}"
+                      Theme="{DynamicResource InnerPathIcon}" />
+        </DataTemplate>
+    </ContentControl.Resources>
+    <ContentControl.Styles>
+        <Style Selector="local|QuerySidePanel">
+            <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+        <Style Selector="local|QuerySidePanel Border.query-panel">
+            <Setter Property="Background" Value="{DynamicResource SemiColorBg0}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+        <Style Selector="local|QuerySidePanel Border.query-section">
+            <Setter Property="Background" Value="{DynamicResource SemiColorBg0}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+        </Style>
+        <Style Selector="local|QuerySidePanel TextBox,
+                          local|QuerySidePanel ComboBox">
+            <Setter Property="MinWidth" Value="140" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SemiColorBorder}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="{DynamicResource SemiBorderRadiusSmall}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel TextBlock.query-label">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+        <Style Selector="local|QuerySidePanel TextBlock.query-header">
+            <Setter Property="FontSize" Value="{DynamicResource SemiFontSizeHeader5}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="local|QuerySidePanel TextBlock.query-rail-char">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorPrimaryActive}" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="local|QuerySidePanel Grid.query-form">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="RowSpacing" Value="6" />
+            <Setter Property="ColumnSpacing" Value="0" />
+        </Style>
+        <Style Selector="local|QuerySidePanel u|IconButton.query-toolbar">
+            <Setter Property="Theme" Value="{DynamicResource OutlineIconButton}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel u|IconButton.query-toolbar /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource SemiColorText0}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel PathIcon.query-toolbar-icon">
+            <Setter Property="Width" Value="14" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="Theme" Value="{DynamicResource InnerPathIcon}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel u|IconButton.query-collapse,
+                          local|QuerySidePanel u|IconButton.query-expand">
+            <Setter Property="Theme" Value="{DynamicResource OutlineIconButton}" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="MinWidth" Value="24" />
+            <Setter Property="MinHeight" Value="24" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="{DynamicResource SemiBorderRadiusFull}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel u|IconButton.query-collapse /template/ PathIcon,
+                          local|QuerySidePanel u|IconButton.query-expand /template/ PathIcon">
+            <Setter Property="Width" Value="{DynamicResource SemiWidthIconMedium}" />
+            <Setter Property="Height" Value="{DynamicResource SemiWidthIconMedium}" />
+        </Style>
+        <Style Selector="local|QuerySidePanel Button.query-rail-title">
+            <Setter Property="Padding" Value="4,8" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </ContentControl.Styles>
+    <ContentControl.Template>
+        <ControlTemplate TargetType="local:QuerySidePanel">
+            <Border Classes="query-panel"
+                    Width="{TemplateBinding CurrentWidth}">
+                <Grid RowDefinitions="Auto,Auto,*">
+                    <Border Classes="query-section"
+                            Padding="8,4"
+                            IsVisible="{TemplateBinding IsOpen}">
+                        <DockPanel LastChildFill="True">
+                            <u:IconButton Classes="Small Tertiary query-collapse"
+                                          DockPanel.Dock="Right"
+                                          Icon="{StaticResource SemiIconChevronLeft}"
+                                          Command="{Binding ToggleDockCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ToolTip.Tip="收起" />
+                            <TextBlock Classes="query-header"
+                                       Text="{TemplateBinding Header}" />
+                        </DockPanel>
+                    </Border>
+
+                    <Border Grid.Row="1"
+                            Classes="query-section"
+                            Padding="8,4"
+                            IsVisible="{TemplateBinding IsOpen}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <u:IconButton Classes="Small Tertiary query-toolbar"
+                                          Icon="{StaticResource SemiIconSearch}"
+                                          IconTemplate="{StaticResource QueryToolbarQueryIconTemplate}"
+                                          Content="{TemplateBinding QueryText}"
+                                          Command="{TemplateBinding QueryCommand}" />
+                            <u:IconButton Classes="Small Tertiary query-toolbar"
+                                          Icon="{StaticResource SemiIconRefresh}"
+                                          IconTemplate="{StaticResource QueryToolbarResetIconTemplate}"
+                                          Content="{TemplateBinding ResetText}"
+                                          Command="{TemplateBinding ResetCommand}" />
+                        </StackPanel>
+                    </Border>
+
+                    <ScrollViewer Grid.Row="2"
+                                  Padding="10,8"
+                                  Background="{DynamicResource SemiColorBg2}"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Top"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  IsVisible="{TemplateBinding IsOpen}">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </ScrollViewer>
+
+                    <Border Grid.RowSpan="3"
+                            Background="{DynamicResource SemiColorBg1}"
+                            IsVisible="{Binding !IsOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid RowDefinitions="Auto,*">
+                            <u:IconButton Classes="Small Tertiary query-expand"
+                                          Margin="0,10,0,0"
+                                          HorizontalAlignment="Center"
+                                          Icon="{StaticResource SemiIconChevronRight}"
+                                          IconTemplate="{StaticResource QueryExpandIconTemplate}"
+                                          Command="{Binding OpenCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ToolTip.Tip="展开查询" />
+                            <Button Grid.Row="1"
+                                    Classes="query-rail-title"
+                                    Margin="0,10,0,12"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding OpenCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ToolTip.Tip="展开查询">
+                                <ItemsControl HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              IsHitTestVisible="False"
+                                              ItemsSource="{TemplateBinding HeaderCharacters}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Spacing="2" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Classes="query-rail-char"
+                                                       Text="{Binding}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </ContentControl.Template>
+</ContentControl>
