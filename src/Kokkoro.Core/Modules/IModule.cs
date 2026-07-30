@@ -7,7 +7,7 @@ public interface IModule
     /// <summary>
     /// 模块的启动级别
     /// </summary>
-    int SetupLevel { get; set; }
+    int SetupLevel { get; }
 
     /// <summary>
     /// 模块的初始化方法
