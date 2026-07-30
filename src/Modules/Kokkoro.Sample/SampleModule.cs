@@ -24,33 +24,11 @@ public class SampleModule : DomainModule
                 {
                     new MenuItemMeta("通知提醒","SemiIconBell",typeof(NotificationDemoViewModel)),
                     new MenuItemMeta("标准对话框", "SemiIconSetting", typeof(DialogServiceDemoViewModel)),
+                    new MenuItemMeta("消息对话框", "SemiIconComment", typeof(MessageServiceDemoViewModel)),
                     new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel))
                 }
             }
         );
-
-        //MenuManager.AddModules(
-        //    new MenuItemMeta("Demo 模块", "SemiIconSetting")
-        //    {
-        //        Children = new List<MenuItemMeta>
-        //        {
-        //            new MenuItemMeta("系统工具", "SemiIconSetting")
-        //            {
-        //                Children = new List<MenuItemMeta>
-        //                {
-        //                    new MenuItemMeta("通知提醒", "SemiIconBell", typeof(NotificationDemoViewModel))
-        //                }
-        //            },
-        //            new MenuItemMeta("主题设置", "SemiIconSetting")
-        //            {
-        //                Children = new List<MenuItemMeta>
-        //                {
-        //                    new MenuItemMeta("Semi颜色卡", "SemiIconContrast", typeof(ColorsPageViewModel))
-        //                }
-        //            }
-        //        }
-        //    }
-        //);
     }
 
     private void App_StartupCompleted(object? sender, EventArgs e)

@@ -1,0 +1,140 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.MessageServiceDemoView"
+             x:DataType="vm:MessageServiceDemoViewModel">
+    <Design.DataContext>
+        <vm:MessageServiceDemoViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer Margin="16"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="消息对话框" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="演示 MessageService 的窗口型与 Overlay 消息对话框。" />
+            </StackPanel>
+
+            <Border Padding="16"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Grid ColumnDefinitions="88,*"
+                      RowDefinitions="Auto,Auto"
+                      ColumnSpacing="12"
+                      RowSpacing="12">
+                    <TextBlock VerticalAlignment="Center"
+                               Foreground="{DynamicResource SemiColorText2}"
+                               Text="标题" />
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Title, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Top"
+                               Foreground="{DynamicResource SemiColorText2}"
+                               Text="消息内容" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             AcceptsReturn="True"
+                             MinHeight="84"
+                             TextWrapping="Wrap"
+                             Text="{Binding Message, Mode=TwoWay}" />
+                </Grid>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16">
+                <Border Grid.Column="0"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="窗口消息对话框" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="以独立窗口展示消息，适用于需要阻塞当前操作的提示。" />
+                        </StackPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding ShowInformationCommand}"
+                                    Content="信息" />
+                            <Button Classes="Success"
+                                    Command="{Binding ShowSuccessCommand}"
+                                    Content="成功" />
+                            <Button Classes="Warning"
+                                    Command="{Binding ShowWarningCommand}"
+                                    Content="警告" />
+                            <Button Classes="Danger"
+                                    Command="{Binding ShowErrorCommand}"
+                                    Content="错误" />
+                        </WrapPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding AskQuestionCommand}"
+                                    Content="是 / 否" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="Overlay 消息对话框" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="在当前窗口内容上方显示，适用于保持上下文的轻量确认。" />
+                        </StackPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding ShowOverlayInformationCommand}"
+                                    Content="信息" />
+                            <Button Classes="Success"
+                                    Command="{Binding ShowOverlaySuccessCommand}"
+                                    Content="成功" />
+                            <Button Classes="Warning"
+                                    Command="{Binding ShowOverlayWarningCommand}"
+                                    Content="警告" />
+                            <Button Classes="Danger"
+                                    Command="{Binding ShowOverlayErrorCommand}"
+                                    Content="错误" />
+                        </WrapPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding AskOverlayQuestionCommand}"
+                                    Content="是 / 否" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Padding="14"
+                    Background="{DynamicResource SemiColorFill0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <StackPanel Spacing="4">
+                    <TextBlock FontWeight="SemiBold"
+                               Text="调用结果" />
+                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                               Text="{Binding LastResult}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
