@@ -25,6 +25,7 @@ public class SampleModule : DomainModule
                     new MenuItemMeta("通知提醒","SemiIconBell",typeof(NotificationDemoViewModel)),
                     new MenuItemMeta("标准对话框", "SemiIconSetting", typeof(DialogServiceDemoViewModel)),
                     new MenuItemMeta("消息对话框", "SemiIconComment", typeof(MessageServiceDemoViewModel)),
+                    new MenuItemMeta("Overlay 对话框", "SemiIconLayers", typeof(OverlayDialogServiceDemoViewModel)),
                     new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel))
                 }
             }

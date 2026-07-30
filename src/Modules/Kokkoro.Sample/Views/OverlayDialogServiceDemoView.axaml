@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.OverlayDialogServiceDemoView"
+             x:DataType="vm:OverlayDialogServiceDemoViewModel">
+    <Design.DataContext>
+        <vm:OverlayDialogServiceDemoViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer Margin="16"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="Overlay 对话框" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="演示 OverlayDialogService 在当前窗口内承载自定义编辑内容。" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16">
+                <Border Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="标准与自定义弹层" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="标准弹层返回按钮结果；自定义编辑弹层返回模板名称。" />
+                        </StackPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding ShowStandardDialogCommand}"
+                                    Content="打开标准对话框" />
+                            <Button Command="{Binding ShowDialogCommand}"
+                                    Content="打开编辑对话框" />
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="8">
+                        <TextBlock FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Text="关闭结果" />
+                        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                   Text="{Binding LastResult}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.OverlayDialogServiceStandardDemoView"
+             x:DataType="vm:OverlayDialogServiceStandardDemoViewModel">
+    <Border Padding="16">
+        <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                   Text="{Binding Message}"
+                   TextWrapping="Wrap" />
+    </Border>
+</UserControl>
