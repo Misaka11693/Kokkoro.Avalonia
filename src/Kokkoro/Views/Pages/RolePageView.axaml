@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="using:Kokkoro.Controls"
+             xmlns:controls2="using:Kokkoro.Core.Controls"
              xmlns:models="using:Kokkoro.Models"
              xmlns:u="https://irihi.tech/ursa"
              xmlns:vm="using:Kokkoro.ViewModels.Pages"
@@ -101,7 +102,7 @@
                     BorderBrush="{DynamicResource SemiColorBorder}"
                     BorderThickness="1"
                     CornerRadius="4">
-                <controls:PageView CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
+                <controls2:PageView CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
                                    PageSize="{Binding PageSize, Mode=TwoWay}"
                                    TotalCount="{Binding TotalCount}"
                                    SelectedCount="{Binding SelectedCount}"
@@ -161,7 +162,7 @@
                                                 Header="说明" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </controls:PageView>
+                </controls2:PageView>
             </Border>
         </Grid>
     </u:LoadingContainer>

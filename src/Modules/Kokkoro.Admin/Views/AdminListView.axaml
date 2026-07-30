@@ -1,0 +1,123 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:coreControls="using:Kokkoro.Core.Controls"
+             xmlns:models="using:Kokkoro.Admin.Models"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.Admin.ViewModels"
+             x:Class="Kokkoro.Admin.Views.AdminListView"
+             x:DataType="vm:AdminListViewModel"
+             MinHeight="0"
+             MinWidth="0"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <u:LoadingContainer Margin="16"
+                        MinHeight="0"
+                        MinWidth="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Background="Transparent"
+                        IsLoading="{Binding IsLoading}"
+                        LoadingMessage="加载中...">
+        <Grid MinHeight="0"
+              MinWidth="0"
+              RowDefinitions="Auto,Auto,*"
+              RowSpacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="数据列表" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="一个包含筛选条件、查询操作、加载状态和分页的后台列表页示例。" />
+            </StackPanel>
+
+            <Border Grid.Row="1"
+                    Padding="16"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Grid ColumnDefinitions="Auto,220,Auto,140,*,Auto,Auto"
+                      ColumnSpacing="12">
+                    <TextBlock VerticalAlignment="Center"
+                               Foreground="{DynamicResource SemiColorText2}"
+                               Text="关键词" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="姓名或编号"
+                             Text="{Binding Keyword, Mode=TwoWay}" />
+
+                    <TextBlock Grid.Column="2"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource SemiColorText2}"
+                               Text="状态" />
+                    <ComboBox Grid.Column="3"
+                              ItemsSource="{Binding StatusOptions}"
+                              SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" />
+
+                    <Button Grid.Column="5"
+                            Command="{Binding QueryCommand}"
+                            Content="查询" />
+                    <Button Grid.Column="6"
+                            Command="{Binding ResetCommand}"
+                            Content="重置" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2"
+                    MinHeight="360"
+                    MinWidth="0"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <coreControls:PageView CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
+                                       PageSize="{Binding PageSize, Mode=TwoWay}"
+                                       TotalCount="{Binding TotalCount}"
+                                       SelectedCount="{Binding SelectedCount}"
+                                       ShowSelectedCount="True"
+                                       IsPagingEnabled="{Binding !IsLoading}"
+                                       LoadPageCommand="{Binding LoadPageCommand}">
+                    <DataGrid x:Name="ItemsGrid"
+                              MinHeight="0"
+                              MinWidth="0"
+                              AutoGenerateColumns="False"
+                              BorderThickness="0"
+                              CanUserReorderColumns="True"
+                              CanUserResizeColumns="True"
+                              CanUserSortColumns="True"
+                              GridLinesVisibility="Horizontal"
+                              HeadersVisibility="Column"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding Items}"
+                              SelectionChanged="OnItemsGridSelectionChanged"
+                              SelectionMode="Extended">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="120"
+                                                x:DataType="models:AdminListItem"
+                                                Binding="{Binding Code}"
+                                                Header="编号" />
+                            <DataGridTextColumn Width="140"
+                                                x:DataType="models:AdminListItem"
+                                                Binding="{Binding Name}"
+                                                Header="名称" />
+                            <DataGridTextColumn Width="140"
+                                                x:DataType="models:AdminListItem"
+                                                Binding="{Binding Department}"
+                                                Header="部门" />
+                            <DataGridTextColumn Width="100"
+                                                x:DataType="models:AdminListItem"
+                                                Binding="{Binding Status}"
+                                                Header="状态" />
+                            <DataGridTextColumn Width="*"
+                                                MinWidth="180"
+                                                x:DataType="models:AdminListItem"
+                                                Binding="{Binding UpdatedAt, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}"
+                                                Header="更新时间" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </coreControls:PageView>
+            </Border>
+        </Grid>
+    </u:LoadingContainer>
+</UserControl>

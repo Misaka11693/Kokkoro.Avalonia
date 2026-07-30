@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:behaviors="using:Kokkoro.Behaviors"
              xmlns:controls="using:Kokkoro.Controls"
+             xmlns:controls2="using:Kokkoro.Core.Controls"
              xmlns:models="using:Kokkoro.Models"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -97,7 +98,7 @@
                                       Theme="{DynamicResource SolidIconButton}" />
                     </controls:DocumentCommandBar>
 
-                    <controls:PageView Grid.Row="1"
+                    <controls2:PageView Grid.Row="1"
                                        CurrentPage="{Binding CurrentPage, Mode=TwoWay}"
                                        PageSize="{Binding PageSize, Mode=TwoWay}"
                                        TotalCount="{Binding TotalCount}"
@@ -192,7 +193,7 @@
                             </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </controls:PageView>
+                    </controls2:PageView>
                 </Grid>
             </Border>
         </u:LoadingContainer>

@@ -77,7 +77,7 @@
                     <TextBlock
                         u:NavMenu.CanToggle="True" Cursor="Hand"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Text="Kokkoro 后台管理系统"
+                        Text="Kokkoro"
                         IsVisible="{Binding !#SidebarMenu.IsHorizontalCollapsed}"
                         FontSize="{DynamicResource SemiFontSizeHeader4}"
                         FontWeight="SemiBold"

@@ -8,6 +8,9 @@
             <StaticResource x:Key="DataGridColumnHeaderPointeroverBackground" ResourceKey="SemiColorFill1" />
             <StaticResource x:Key="DataGridColumnHeaderPressedBackground" ResourceKey="SemiColorFill2" />
             <StaticResource x:Key="DataGridRowAlternateBackground" ResourceKey="SemiGrey0" />
+            <StaticResource x:Key="DataGridRowPointeroverBackground" ResourceKey="SemiColorFill2" />
+            <StaticResource x:Key="DataGridRowSelectedBackground" ResourceKey="SemiColorPrimaryLightPointerover" />
+            <StaticResource x:Key="DataGridRowSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryLightActive" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <StaticResource x:Key="DataGridColumnHeaderBackground" ResourceKey="SemiColorFill0" />
@@ -15,6 +18,9 @@
             <StaticResource x:Key="DataGridColumnHeaderPointeroverBackground" ResourceKey="SemiColorFill1" />
             <StaticResource x:Key="DataGridColumnHeaderPressedBackground" ResourceKey="SemiColorFill2" />
             <StaticResource x:Key="DataGridRowAlternateBackground" ResourceKey="SemiGrey0" />
+            <StaticResource x:Key="DataGridRowPointeroverBackground" ResourceKey="SemiColorFill2" />
+            <StaticResource x:Key="DataGridRowSelectedBackground" ResourceKey="SemiColorPrimaryLightPointerover" />
+            <StaticResource x:Key="DataGridRowSelectedPointeroverBackground" ResourceKey="SemiColorPrimaryLightActive" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

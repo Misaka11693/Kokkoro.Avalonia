@@ -1,11 +1,10 @@
 using Avalonia;
-using Avalonia.Animation;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using System.Windows.Input;
 
-namespace Kokkoro.Controls;
+namespace Kokkoro.Core.Controls;
 
 /// <summary>
 /// 通用分页容器：ContentPresenter + 底栏统计 + Ursa Pagination。
