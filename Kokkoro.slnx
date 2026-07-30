@@ -7,7 +7,7 @@
     <Project Path="src/Hosts/Kokkoro.Desktop/Kokkoro.Desktop.csproj" />
   </Folder>
   <Folder Name="/Modules/">
-    <Project Path="src/Modules/Kokkoro.Demo/Kokkoro.Sample.csproj" Id="83717bd5-c61b-4bd5-9134-15d0d5330ee1" />
+    <Project Path="src/Modules/Kokkoro.Sample/Kokkoro.Sample.csproj" />
   </Folder>
   <Project Path="src/Kokkoro.Core/Kokkoro.Core.csproj" />
   <Project Path="src/Kokkoro/Kokkoro.csproj" />

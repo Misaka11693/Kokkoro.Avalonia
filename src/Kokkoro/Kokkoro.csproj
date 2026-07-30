@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Kokkoro.Core\Kokkoro.Core.csproj" />
     <ProjectReference Include="..\Kokkoro.Services\Kokkoro.Services.csproj" />
     <ProjectReference Include="..\Kokkoro.Themes\Kokkoro.Themes.csproj" />
-    <ProjectReference Include="..\Modules\Kokkoro.Demo\Kokkoro.Sample.csproj" />
+    <ProjectReference Include="..\Modules\Kokkoro.Sample\Kokkoro.Sample.csproj" />
   </ItemGroup>
 
   <ItemGroup>
