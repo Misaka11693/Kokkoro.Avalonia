@@ -1,0 +1,158 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             x:Class="Kokkoro.Sample.Views.ToastServiceDemoView"
+             x:DataType="vm:ToastServiceDemoViewModel">
+    <Design.DataContext>
+        <vm:ToastServiceDemoViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer Margin="16"
+                  HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock FontSize="20"
+                           FontWeight="SemiBold"
+                           Text="轻提示" />
+                <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                           Text="演示 ToastService 在当前窗口短暂显示的状态提示。" />
+            </StackPanel>
+
+            <Border Padding="16"
+                    Background="{DynamicResource SemiColorBg0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Grid ColumnDefinitions="88,*"
+                      ColumnSpacing="12">
+                    <TextBlock VerticalAlignment="Top"
+                               Foreground="{DynamicResource SemiColorText2}"
+                               Text="消息内容" />
+                    <TextBox Grid.Column="1"
+                             AcceptsReturn="True"
+                             MinHeight="84"
+                             TextWrapping="Wrap"
+                             Text="{Binding Message, Mode=TwoWay}" />
+                </Grid>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="16">
+                <Border Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="显示设置" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="控制轻提示的停留时间、数量和外观。" />
+                        </StackPanel>
+                        <Grid ColumnDefinitions="110,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                              ColumnSpacing="12"
+                              RowSpacing="10">
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示时长（秒）" />
+                            <u:NumericIntUpDown Grid.Column="1"
+                                                Width="120"
+                                                Minimum="1"
+                                                Maximum="60"
+                                                Value="{Binding Duration, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="最多同时显示" />
+                            <u:NumericIntUpDown Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="120"
+                                                Minimum="1"
+                                                Maximum="10"
+                                                Value="{Binding MaxItems, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="2"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示图标" />
+                            <ToggleSwitch Grid.Row="2"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding ShowIcon, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="3"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="显示关闭按钮" />
+                            <ToggleSwitch Grid.Row="3"
+                                          Grid.Column="1"
+                                          IsChecked="{Binding ShowClose, Mode=TwoWay}" />
+
+                            <TextBlock Grid.Row="4"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource SemiColorText2}"
+                                       Text="提示样式" />
+                            <ComboBox Grid.Row="4"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding Styles}"
+                                      SelectedItem="{Binding SelectedStyle, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Padding="16"
+                        Background="{DynamicResource SemiColorBg0}"
+                        BorderBrush="{DynamicResource SemiColorBorder}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontSize="15"
+                                       FontWeight="SemiBold"
+                                       Text="提示类型" />
+                            <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                                       Text="发送不同状态的轻提示，或清空当前窗口的全部轻提示。" />
+                        </StackPanel>
+                        <WrapPanel ItemSpacing="8"
+                                   LineSpacing="8">
+                            <Button Command="{Binding ShowInformationCommand}"
+                                    Content="信息" />
+                            <Button Classes="Success"
+                                    Command="{Binding ShowSuccessCommand}"
+                                    Content="成功" />
+                            <Button Classes="Warning"
+                                    Command="{Binding ShowWarningCommand}"
+                                    Content="警告" />
+                            <Button Classes="Danger"
+                                    Command="{Binding ShowErrorCommand}"
+                                    Content="错误" />
+                        </WrapPanel>
+                        <Button HorizontalAlignment="Left"
+                                Command="{Binding CloseAllCommand}"
+                                Content="关闭全部轻提示" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Padding="14"
+                    Background="{DynamicResource SemiColorFill0}"
+                    BorderBrush="{DynamicResource SemiColorBorder}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <StackPanel Spacing="4">
+                    <TextBlock FontWeight="SemiBold"
+                               Text="调用结果" />
+                    <TextBlock Foreground="{DynamicResource SemiColorText2}"
+                               Text="{Binding LastResult}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
