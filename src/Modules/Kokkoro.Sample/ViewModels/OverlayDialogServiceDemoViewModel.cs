@@ -20,7 +20,7 @@ public partial class OverlayDialogServiceDemoViewModel : DocumentPage
             {
                 Title = "操作提示",
                 Mode = DialogMode.Info,
-                Buttons = DialogButton.OKCancel,
+                Buttons = DialogButton.YesNo,
                 CanLightDismiss = false
             });
 
