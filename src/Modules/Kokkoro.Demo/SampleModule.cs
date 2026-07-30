@@ -4,9 +4,7 @@ using Kokkoro.Core.Modules;
 using Kokkoro.Sample.ViewModels;
 using Kokkoro.Sample;
 using Kokkoro.ViewModels.Core;
-using ModuleAttribute = Kokkoro.Core.Modules.ModuleAttribute;
 
-[assembly: Module(typeof(SampleModule))]
 namespace Kokkoro.Sample;
 
 public class SampleModule : DomainModule

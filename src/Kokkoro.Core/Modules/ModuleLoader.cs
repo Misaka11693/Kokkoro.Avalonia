@@ -8,7 +8,7 @@ internal static class ModuleLoader
 
     /// <summary>
     /// 已加载的模块程序集。
-    /// 首次访问时自动加载 Modules 目录下的程序集。
+    /// 首次访问时从应用程序目录加载模块程序集。
     /// </summary>
     public static IReadOnlyList<ModuleAssembly> ModuleAssemblys
     {
@@ -35,11 +35,26 @@ internal static class ModuleLoader
             var assembly = Assembly.LoadFrom(file);
             if (assembly != null)
             {
-                var moduleType = assembly.GetTypes().FirstOrDefault(t => typeof(IModule).IsAssignableFrom(t) && !t.IsAbstract);
-                if (moduleType != null)
+                var moduleTypes = assembly
+                    .GetTypes()
+                    .Where(t => typeof(IModule).IsAssignableFrom(t) && !t.IsAbstract)
+                    .ToArray();
+
+                if (moduleTypes.Length > 1)
                 {
-                    var moduleInstance = (IModule)Activator.CreateInstance(moduleType)!;
-                    _assemblies.Add(new ModuleAssembly { Assembly = assembly, Instance = moduleInstance });
+                    throw new InvalidOperationException(
+                        $"程序集 '{assembly.FullName}' 包含多个 {nameof(IModule)} 实现。每个程序集只能定义一个模块入口。");
+                }
+
+                if (moduleTypes.Length == 1)
+                {
+                    var moduleInstance = (IModule)Activator.CreateInstance(moduleTypes[0])!;
+                    _assemblies.Add(new ModuleAssembly
+                    {
+                        Assembly = assembly,
+                        Instance = moduleInstance,
+                        SetupIndex = moduleInstance.SetupLevel
+                    });
                 }
             }
         }
