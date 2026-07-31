@@ -33,6 +33,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!--<ResourceInclude Source="/Styles/Docking/AppHostWindow.axaml" />-->
                 <ResourceInclude Source="/Styles/DataGrid.axaml" />
+                <ResourceInclude Source="/Styles/Docking/SemiDockOverrides.axaml" />
             </ResourceDictionary.MergedDictionaries>
             <!--
             <SolidColorBrush x:Key="DockTabActiveBackgroundBrush" Color="#3B82F6"/>
@@ -65,13 +66,8 @@
             -->
 
             <!--鼠标悬停-->
-            <!--            <StaticResource
-            x:Key="DocumentTabStripItemUnselectedPointeroverForeground"
-            ResourceKey="SemiColorText0"/>
-
-            <StaticResource
-            x:Key="DocumentTabStripItemUnselectedPointeroverBackground"
-            ResourceKey="SemiColorPrimary"/>-->
+<!--            <StaticResource x:Key="DocumentTabStripItemUnselectedPointeroverForeground" ResourceKey="SemiColorPrimary"/>
+            <SolidColorBrush x:Key="DocumentTabStripItemUnselectedPointeroverBackground"  Color="Transparent"/>-->
 
         </ResourceDictionary>
     </Application.Resources>
