@@ -42,9 +42,9 @@
 		<!-- ReactiveUI（MVVM + 源生成器） -->
 		<PackageReference Include="ReactiveUI.Avalonia" />
 		<PackageReference Include="ReactiveUI.SourceGenerators">
-			<!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
 			<!--允许传递-->
 			<!--<PrivateAssets>all</PrivateAssets>-->
+		    <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
 		</PackageReference>
 
 		<!-- 停靠布局 -->

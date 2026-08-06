@@ -3,7 +3,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Dock.Avalonia.Controls;
-using DynamicData;
 using Ursa.Controls;
 
 namespace Kokkoro.Docking;

@@ -111,4 +111,14 @@ public sealed class ViewLocator : IDataTemplate, IViewLocator
             && !type.IsAbstract
             && !typeof(Control).IsAssignableFrom(type);
     }
+
+    public IViewFor<TViewModel>? ResolveView<TViewModel>() where TViewModel : class
+    {
+        throw new NotImplementedException();
+    }
+
+    public IViewFor? ResolveView(object? instance)
+    {
+        throw new NotImplementedException();
+    }
 }

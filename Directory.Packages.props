@@ -6,16 +6,16 @@
   <ItemGroup>
     <!-- Avalonia -->
     <!-- Important: keep versions in sync -->
-    <PackageVersion Include="Avalonia" Version="12.1.0" />
+    <PackageVersion Include="Avalonia" Version="12.1.1" />
     <PackageVersion Include="Avalonia.Android" Version="12.0.2" />
     <PackageVersion Include="Avalonia.Browser" Version="12.0.2" />
     <PackageVersion Include="Avalonia.Controls.TreeDataGrid" Version="12.0.3" />
-    <PackageVersion Include="Avalonia.Desktop" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Desktop" Version="12.1.1" />
     <PackageVersion Include="Avalonia.iOS" Version="12.0.2" />
-    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.0" />
-    <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+    <PackageVersion Include="Avalonia.Markup.Xaml.Loader" Version="12.1.1" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.0.2" />
-    <PackageVersion Include="Avalonia.Controls.DataGrid" Version="12.1.0" />
+    <PackageVersion Include="Avalonia.Controls.DataGrid" Version="12.1.2" />
     <!-- Diagnostics -->
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" />
     <!-- Android -->
@@ -29,11 +29,11 @@
     <PackageVersion Include="Prism.DryIoc.Avalonia" Version="9.0.537.11130" />
     <PackageVersion Include="Prism.Unity" Version="9.0.537" />
     <PackageVersion Include="ReactiveUI" Version="23.2.28" />
-    <PackageVersion Include="Svg.Controls.Skia.Avalonia" Version="12.0.0.13" />
+    <PackageVersion Include="Svg.Controls.Skia.Avalonia" Version="12.0.0.14" />
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.15" />
     <!-- ReactiveUI -->
     <PackageVersion Include="ReactiveUI.Avalonia" Version="12.0.3" />
-    <PackageVersion Include="ReactiveUI.SourceGenerators" Version="3.1.0" />
+    <PackageVersion Include="ReactiveUI.SourceGenerators" Version="3.2.0" />
     <!-- Dock -->
     <PackageVersion Include="Dock.Model" Version="12.0.0.2" />
     <PackageVersion Include="Dock.Model.ReactiveUI" Version="12.0.0.2" />
@@ -42,12 +42,12 @@
     <!-- Mapping -->
     <PackageVersion Include="Mapster" Version="10.0.11" />
     <!-- Semi -->
-    <PackageVersion Include="Semi.Avalonia" Version="12.1.0" />
-    <PackageVersion Include="Semi.Avalonia.DataGrid" Version="12.1.0" />
+    <PackageVersion Include="Semi.Avalonia" Version="12.1.0.1" />
+    <PackageVersion Include="Semi.Avalonia.DataGrid" Version="12.1.0.1" />
     <PackageVersion Include="Semi.Avalonia.Dock" Version="12.0.0.2" />
     <!-- Ursa -->
-    <PackageVersion Include="Irihi.Ursa" Version="2.1.0" />
+    <PackageVersion Include="Irihi.Ursa" Version="2.2.0" />
     <PackageVersion Include="Irihi.Ursa.ReactiveUIExtension" Version="2.0.0" />
-    <PackageVersion Include="Irihi.Ursa.Themes.Semi" Version="2.1.0" />
+    <PackageVersion Include="Irihi.Ursa.Themes.Semi" Version="2.2.0" />
   </ItemGroup>
 </Project>

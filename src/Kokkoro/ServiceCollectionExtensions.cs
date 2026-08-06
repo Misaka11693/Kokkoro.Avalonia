@@ -41,20 +41,20 @@ public static class ServiceCollectionExtensions
         services.RegisterTransient<StartupSplashWindowViewModel>();
         services.RegisterTransient<StartupSplashWindow>();
 
-        services.RegisterTransient<AboutWindowViewModel>();
-        services.RegisterTransient<IViewFor<AboutWindowViewModel>, AboutWindow>();
+        //services.RegisterTransient<AboutWindowViewModel>();
+        //services.RegisterTransient<IViewFor<AboutWindowViewModel>, AboutWindow>();
 
-        services.RegisterTransient<AuthWindowViewModel>();
-        services.RegisterTransient<IViewFor<AuthWindowViewModel>, AuthWindow>();
+        //services.RegisterTransient<AuthWindowViewModel>();
+        //services.RegisterTransient<IViewFor<AuthWindowViewModel>, AuthWindow>();
 
-        services.RegisterTransient<MainWindowViewModel>();
-        services.RegisterTransient<IViewFor<MainWindowViewModel>, MainWindow>();
+        //services.RegisterTransient<MainWindowViewModel>();
+        //services.RegisterTransient<IViewFor<MainWindowViewModel>, MainWindow>();
 
-        services.RegisterTransient<KokkoroWorkbenchViewModel>();
-        services.RegisterTransient<IViewFor<KokkoroWorkbenchViewModel>, KokkoroWorkbench>();
+        //services.RegisterTransient<KokkoroWorkbenchViewModel>();
+        //services.RegisterTransient<IViewFor<KokkoroWorkbenchViewModel>, KokkoroWorkbench>();
 
-        services.RegisterTransient<SettingsWindowViewModel>();
-        services.RegisterTransient<IViewFor<SettingsWindowViewModel>, SettingsWindow>();
+        //services.RegisterTransient<SettingsWindowViewModel>();
+        //services.RegisterTransient<IViewFor<SettingsWindowViewModel>, SettingsWindow>();
 
         RegisterViews(services, assemblyTypes);
     }
