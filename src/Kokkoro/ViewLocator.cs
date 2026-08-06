@@ -12,6 +12,7 @@ namespace Kokkoro;
     Url = "https://docs.avaloniaui.net/docs/concepts/view-locator")]
 public sealed class ViewLocator : IDataTemplate, IViewLocator
 {
+    /// <inheritdoc />
     public Control? Build(object? param)
     {
         return param is null
@@ -19,19 +20,19 @@ public sealed class ViewLocator : IDataTemplate, IViewLocator
             : ResolveView(param.GetType(), param) as Control ?? new TextBlock { Text = "View not found: " + param.GetType().Name };
     }
 
-    /// <summary>
-    /// 仅判断能否解析，不创建 View（避免 Match + Build 重复实例化）。
-    /// </summary>
+    /// <inheritdoc />
     public bool Match(object? param)
     {
         return param is not null && CanResolveView(param.GetType());
     }
 
+    /// <inheritdoc />
     IViewFor<TViewModel>? IViewLocator.ResolveView<TViewModel>(string? contract)
     {
         return ResolveView(typeof(TViewModel), null, contract) as IViewFor<TViewModel>;
     }
 
+    /// <inheritdoc />
     IViewFor? IViewLocator.ResolveView(object? viewModel, string? contract)
     {
         return viewModel is null ? null : ResolveView(viewModel.GetType(), viewModel, contract);
@@ -54,7 +55,7 @@ public sealed class ViewLocator : IDataTemplate, IViewLocator
         return view;
     }
 
-    private static bool CanResolveView(Type viewModelType)
+    private bool CanResolveView(Type viewModelType)
     {
         if (!IsViewModel(viewModelType))
             return false;
@@ -62,33 +63,6 @@ public sealed class ViewLocator : IDataTemplate, IViewLocator
         var serviceType = typeof(IViewFor<>).MakeGenericType(viewModelType);
 
         return AppRuntime.Service.IsRegistered(serviceType);
-    }
-
-    //private static bool CanResolveView(Type viewModelType)
-    //    => TryResolveViewType(viewModelType) is not null;
-
-    private static Type? TryResolveViewType(Type viewModelType)
-    {
-        if (viewModelType.FullName?.Contains(".ViewModels.", StringComparison.Ordinal) != true)
-        {
-            return null;
-        }
-
-        var viewTypeName = viewModelType.FullName
-            .Replace(".ViewModels.", ".Views.", StringComparison.Ordinal)
-            .Replace("ViewModel", "View", StringComparison.Ordinal);
-
-        if (string.IsNullOrWhiteSpace(viewTypeName))
-        {
-            return null;
-        }
-
-        var viewType = viewModelType.Assembly.GetType(viewTypeName);
-        return viewType is not null
-            && typeof(Control).IsAssignableFrom(viewType)
-            && typeof(IViewFor).IsAssignableFrom(viewType)
-            ? viewType
-            : null;
     }
 
     private IViewFor? ResolveRegisteredView(Type viewModelType, string? contract)
@@ -110,15 +84,5 @@ public sealed class ViewLocator : IDataTemplate, IViewLocator
         return type.IsClass
             && !type.IsAbstract
             && !typeof(Control).IsAssignableFrom(type);
-    }
-
-    public IViewFor<TViewModel>? ResolveView<TViewModel>() where TViewModel : class
-    {
-        throw new NotImplementedException();
-    }
-
-    public IViewFor? ResolveView(object? instance)
-    {
-        throw new NotImplementedException();
     }
 }
