@@ -188,6 +188,6 @@ public class DialogOptions : IDialogOptions
     public ScrollBarVisibility VerticalScrollBarVisibility { get; set; } = ScrollBarVisibility.Auto;
     public WindowStartupLocation StartupLocation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public Func<KokkoroDialogWindow, int, Task<bool>>? BeforeButtonCloseAsync { get; set; }
-    public IList<string> Commands { get; } =["取消","确认"];
+    public List<string> Commands { get; } =["取消","确认"];
     public int DefaultButton { get; set; } = 1;
 }

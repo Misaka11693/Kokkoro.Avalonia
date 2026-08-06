@@ -26,7 +26,7 @@ public partial class KokkoroDialogWindow : UrsaWindow
     /// <summary>
     /// 命令按钮集合
     /// </summary>
-    public IList<string> Commands { get; } = [];
+    public List<string> Commands { get; } = [];
 
     /// <summary>
     /// 构造函数

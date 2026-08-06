@@ -117,7 +117,7 @@ public interface IDialogOptions //: IViewContent
     ///
     /// ESC 或右上角关闭按钮 -> -1
     /// </remarks>
-    IList<string> Commands { get; }
+    List<string> Commands { get; }
 
     /// <summary>
     /// 默认按钮索引

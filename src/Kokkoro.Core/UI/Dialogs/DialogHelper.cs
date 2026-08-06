@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using DynamicData;
 using Kokkoro.Core.Helpers;
 namespace Kokkoro.Core.UI.Dialogs;
 
