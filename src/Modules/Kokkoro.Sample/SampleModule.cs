@@ -27,7 +27,8 @@ public class SampleModule : DomainModule
                     new MenuItemMeta("消息对话框", "SemiIconComment", typeof(MessageServiceDemoViewModel)),
                     new MenuItemMeta("Overlay 对话框", "SemiIconLayers", typeof(OverlayDialogServiceDemoViewModel)),
                     new MenuItemMeta("轻提示", "SemiIconBell", typeof(ToastServiceDemoViewModel)),
-                    new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel))
+                    new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel)),
+                    new MenuItemMeta("Semi图标", "SemiIconSetting", typeof(IconDemoViewModel))
                 }
             }
         );

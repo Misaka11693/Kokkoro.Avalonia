@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Kokkoro.Sample.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="850"
+             d:DesignHeight="450"
+             x:DataType="vm:IconDemoViewModel"
+             x:Class="Kokkoro.Sample.Views.IconDemoView">
+    <Design.DataContext>
+        <vm:IconDemoViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <TextBox Grid.Row="0"
+                 Width="600"
+                 Margin="8"
+                 Classes="ClearButton"
+                 Text="{Binding SearchText, Mode=TwoWay}"
+                 PlaceholderText="Input Icon Name" />
+
+        <TabControl Grid.Row="1"
+                    Theme="{StaticResource LineTabControl}"
+                    ItemsSource="{Binding IconTabs}">
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="vm:IconTab">
+                    <TextBlock Text="{Binding Header}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="vm:IconTab">
+                    <ScrollViewer>
+                        <ItemsControl Margin="0,10"
+                                      ItemsSource="{Binding IconItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel ItemWidth="200"
+                                               ItemHeight="120"
+                                               ItemSpacing="10"
+                                               LineSpacing="10" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="vm:IconItem">
+                                    <Button Theme="{DynamicResource OutlineButton}"
+                                            Classes="Tertiary"
+                                            Padding="0"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Click="IconCard_Click">
+                                        <StackPanel Spacing="8">
+                                            <PathIcon Theme="{DynamicResource InnerPathIcon}"
+                                                      Width="28"
+                                                      Height="28"
+                                                      HorizontalAlignment="Center"
+                                                      Data="{Binding Geometry}" />
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       FontSize="12"
+                                                       FontWeight="Normal"
+                                                       Text="{Binding DisplayName}" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>
