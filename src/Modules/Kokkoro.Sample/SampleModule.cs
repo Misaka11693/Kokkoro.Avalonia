@@ -18,17 +18,17 @@ public class SampleModule : DomainModule
     private void App_ModuleOperations(object? sender, EventArgs e)
     {
         MenuManager.AddModules(
-            new MenuItemMeta(" 示例模块 ", "SemiIconSetting")
+            new MenuItemMeta(" 示例模块 ", "SemiIconBookStroked")
             {
                 Children = new List<MenuItemMeta>
                 {
-                    new MenuItemMeta("通知提醒","SemiIconBell",typeof(NotificationDemoViewModel)),
-                    new MenuItemMeta("标准对话框", "SemiIconSetting", typeof(DialogServiceDemoViewModel)),
-                    new MenuItemMeta("消息对话框", "SemiIconComment", typeof(MessageServiceDemoViewModel)),
-                    new MenuItemMeta("Overlay 对话框", "SemiIconLayers", typeof(OverlayDialogServiceDemoViewModel)),
-                    new MenuItemMeta("轻提示", "SemiIconBell", typeof(ToastServiceDemoViewModel)),
-                    new MenuItemMeta("Semi颜色卡","SemiIconContrast",typeof(ColorsPageViewModel)),
-                    new MenuItemMeta("Semi图标", "SemiIconSetting", typeof(IconDemoViewModel))
+                    new MenuItemMeta("通知提醒","SemiIconBottomCenterStroked",typeof(NotificationDemoViewModel)),
+                    new MenuItemMeta("标准对话框", "SemiIconBottomLeftStroked", typeof(DialogServiceDemoViewModel)),
+                    new MenuItemMeta("消息对话框", "SemiIconBriefStroked", typeof(MessageServiceDemoViewModel)),
+                    new MenuItemMeta("Overlay 对话框", "SemiIconBottomLeftStroked", typeof(OverlayDialogServiceDemoViewModel)),
+                    new MenuItemMeta("轻提示", "SemiIconCenterLeftStroked", typeof(ToastServiceDemoViewModel)),
+                    new MenuItemMeta("Semi颜色卡","SemiIconChevronRightStroked",typeof(ColorsPageViewModel)),
+                    new MenuItemMeta("Semi图标", "SemiIconCodeStroked", typeof(IconDemoViewModel))
                 }
             }
         );

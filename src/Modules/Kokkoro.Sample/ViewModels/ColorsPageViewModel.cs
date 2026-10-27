@@ -1,4 +1,5 @@
 using Kokkoro.Core.Workbench.Docking;
+using Kokkoro.ViewModels.Pages;
 
 namespace Kokkoro.Sample.ViewModels;
 
@@ -6,7 +7,7 @@ namespace Kokkoro.Sample.ViewModels;
 /// Semi 常用色 token 参考页。
 /// 分组与命名对齐 Semi.Avalonia.Demo <c>ColorTokens</c>（完整版）。
 /// </summary>
-public class ColorsPageViewModel : DocumentPage
+public class ColorsPageViewModel : DocumentPageViewModel
 {
     public IReadOnlyList<ColorTokenSection> Sections { get; } =
     [

@@ -9,8 +9,8 @@ public abstract class DocumentPageView<TViewModel> : ReactiveUserControl<TViewMo
 {
     protected DocumentPageView()
     {
-        //DataContextChanged += (_, _) => TryEnableZoom();
-        //Loaded += (_, _) => TryEnableZoom();
+        DataContextChanged += (_, _) => TryEnableZoom();
+        Loaded += (_, _) => TryEnableZoom();
     }
 
     private void TryEnableZoom()
